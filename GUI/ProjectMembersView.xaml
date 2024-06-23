@@ -1,0 +1,46 @@
+﻿<Window x:Class="GUI.ProjectMembersView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="Manage Project Members" Height="450" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" Text="Quản lý thành viên của dự án" Margin="0,0,0,20"/>
+
+        <!-- Members List -->
+        <DataGrid x:Name="MembersDataGrid" Grid.Row="1" AutoGenerateColumns="False" Margin="0,0,0,20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="User ID" Binding="{Binding UserID}" Width="100"/>
+                <DataGridTextColumn Header="Role ID" Binding="{Binding RoleID}" Width="100"/>
+                <DataGridTextColumn Header="User Name" Binding="{Binding UserName}" Width="200"/>
+                <DataGridTextColumn Header="Role Name" Binding="{Binding RoleName}" Width="200"/>
+                <DataGridTemplateColumn Header="Actions" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Remove" Command="{Binding DataContext.RemoveMemberCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}" Width="75"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Add Member Section -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <ComboBox x:Name="UserComboBox" Width="200" Margin="0,0,10,0" DisplayMemberPath="UserName" SelectedValuePath="UserID"/>
+            <ComboBox x:Name="RoleComboBox" Width="150" Margin="0,0,10,0" DisplayMemberPath="RoleName" SelectedValuePath="RoleID"/>
+            <Button Content="Thêm thành viên" Width="120" Margin="0,0,10,0" Click="AddMember_Click"/>
+            <Button Content="Xóa thành viên" Width="120" Margin="0,0,10,0" Click="RemoveMember_Click"/>
+            <Button Content="Điều chỉnh vai trò" Width="120" Click="AdjustRole_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

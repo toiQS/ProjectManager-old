@@ -1,0 +1,45 @@
+﻿<Window x:Class="GUI.EditMemberRoleView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="Điều Chỉnh Vai Trò Thành Viên" Height="300" Width="500">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" Text="Điều Chỉnh Vai Trò Thành Viên" Margin="0,0,0,20"/>
+
+        <!-- Select Member -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <Label Content="Chọn Thành Viên:" Width="150" VerticalAlignment="Center"/>
+            <ComboBox x:Name="MemberComboBox" Width="250" DisplayMemberPath="UserName" SelectedValuePath="ID"/>
+        </StackPanel>
+
+        <!-- Select New Role -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
+            <Label Content="Vai Trò Mới:" Width="150" VerticalAlignment="Center"/>
+            <ComboBox x:Name="RoleComboBox" Width="250" DisplayMemberPath="RoleName" SelectedValuePath="ID"/>
+        </StackPanel>
+
+        <!-- Select Project -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,10">
+            <Label Content="Chọn Dự Án:" Width="150" VerticalAlignment="Center"/>
+            <ComboBox x:Name="ProjectComboBox" Width="250" DisplayMemberPath="ProjectName" SelectedValuePath="ID"/>
+        </StackPanel>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Cập Nhật" Width="100" Click="UpdateRole_Click" Margin="0,0,10,0"/>
+            <Button Content="Hủy" Width="100" Click="Cancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
