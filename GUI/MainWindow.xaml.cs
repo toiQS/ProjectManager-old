@@ -30,17 +30,22 @@ namespace GUI
 
         private void RoleButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Hide();
+            RoleWindow roleWindow = new RoleWindow();
+            roleWindow.Show();
         }
 
         private void StatusButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Hide();
+            StatusWindow statusWindow = new StatusWindow();
+            statusWindow.Show();
         }
 
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ViewProfileWindow profileWindow = new ViewProfileWindow();
+            profileWindow.ShowDialog();
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
