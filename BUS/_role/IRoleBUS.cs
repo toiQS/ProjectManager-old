@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL._role
+namespace BUS._role
 {
-    public interface IRoleDAL 
+    public interface IRoleBUS
     {
         public List<Role> GetRoles();
         public bool AddRole(string rolename, string roleinfo);

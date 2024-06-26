@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL._role
+namespace BUS._role
 {
-    internal class RoleDAL : IRoleDAL
+    public class RoleBUS : IRoleBUS
     {
         private readonly SqlConnection conn;
 
-        public RoleDAL()
+        public RoleBUS()
         {
             conn = new SqlConnection("Data Source=AKAI\\SQLEXPRESS;Initial Catalog=Project_Manager;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
         }
