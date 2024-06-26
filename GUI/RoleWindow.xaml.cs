@@ -1,16 +1,8 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace GUI
 {
@@ -19,9 +11,18 @@ namespace GUI
     /// </summary>
     public partial class RoleWindow : Window
     {
+        
         public RoleWindow()
         {
             InitializeComponent();
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load roles: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void AddRoleButton_Click(object sender, RoutedEventArgs e)
@@ -33,7 +34,7 @@ namespace GUI
         private void ViewRoleButton_Click(object sender, RoutedEventArgs e)
         {
             ViewRoleWindow roleWindow = new ViewRoleWindow();
-            roleWindow.ShowDialog();    
+            roleWindow.ShowDialog();
         }
 
         private void BackToHomeButton_Click(object sender, RoutedEventArgs e)
