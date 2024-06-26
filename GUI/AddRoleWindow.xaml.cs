@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BUS._role;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +33,24 @@ namespace GUI
 
         private void AddRoleButton_Click(object sender, RoutedEventArgs e)
         {
-
+            string rolename = RoleNameTextBox.Text;
+            string roleinfo = RoleInfoTextBox.Text;
+            if(string.IsNullOrEmpty(rolename) || string.IsNullOrEmpty(roleinfo))
+            {
+                MessageBox.Show("Please input a new role.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            RoleBUS roleBUS = new RoleBUS();
+            var result =  roleBUS.AddRole(rolename, roleinfo);
+            if (result)
+            {
+                Hide() ;
+                RoleWindow role = new RoleWindow();
+                role.LoadRoles();
+            }
+            else
+            {
+                MessageBox.Show("False", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

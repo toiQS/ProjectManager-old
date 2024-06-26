@@ -32,8 +32,8 @@ namespace GUI
 
         private void ViewEditButton_Click(object sender, RoutedEventArgs e)
         {
-            ViewRoleWindow roleWindow = new ViewRoleWindow();
-            roleWindow.ShowDialog();
+            ViewStatusWindow viewStatusWindow = new ViewStatusWindow();
+            viewStatusWindow.ShowDialog();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
