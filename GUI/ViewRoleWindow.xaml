@@ -26,8 +26,9 @@
         <Label Content="Thông tin vai trò:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
         <TextBox x:Name="RoleInfoTextBox" Grid.Row="2" Grid.Column="1" Margin="0,0,0,5" HorizontalAlignment="Stretch"/>
 
-        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="171,0,0,0" Height="28" VerticalAlignment="Center">
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="90,0,0,0" Height="28" VerticalAlignment="Center" Width="341">
             <Button Content="Lưu" Width="80" Margin="0,0,10,0" Click="SaveButton_Click"/>
+            <Button Content="Xóa" Width="80" Margin="0,0,10,0" Click="DeleteButton_Click"/>
             <Button Content="Hủy" Width="80" Click="CancelButton_Click"/>
         </StackPanel>
     </Grid>

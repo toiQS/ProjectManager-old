@@ -54,5 +54,20 @@ namespace GUI
         {
             Hide();
         }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var result = role.DeleteRole(_id);
+            if (result)
+            {
+                Hide();
+                RoleWindow roleWindow = new RoleWindow();
+                roleWindow.LoadRoles();
+            }
+            else
+            {
+                MessageBox.Show("False", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
     }
 }

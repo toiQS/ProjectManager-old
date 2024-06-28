@@ -11,24 +11,25 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto" MinWidth="128.26"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="Mã số trạng thái:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
-        <TextBox x:Name="StatusIDTextBox" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5" HorizontalAlignment="Stretch" IsReadOnly="True"/>
+        <Label Content="Mã số trạng thái:" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0" Height="26"/>
+        <TextBox x:Name="StatusIDTextBox" Grid.Row="0" Margin="128,5,0,5" IsReadOnly="True" Grid.ColumnSpan="2"/>
 
-        <Label Content="Tên trạng thái:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
-        <TextBox x:Name="StatusNameTextBox" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" HorizontalAlignment="Stretch"/>
+        <Label Content="Tên trạng thái:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0" Height="26"/>
+        <TextBox x:Name="StatusNameTextBox" Grid.Row="1" Margin="128,5,0,5" Grid.ColumnSpan="2"/>
 
-        <Label Content="Thông tin trạng thái:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
-        <TextBox x:Name="StatusInfoTextBox" Grid.Row="2" Grid.Column="1" Margin="0,0,0,5" HorizontalAlignment="Stretch"/>
+        <Label Content="Thông tin trạng thái:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0" Height="26"/>
+        <TextBox x:Name="StatusInfoTextBox" Grid.Row="2" Margin="128,5,0,5" Grid.ColumnSpan="2"/>
 
-        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,63,0,-53">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,50,0,0" Grid.ColumnSpan="2" Width="260" Height="23" VerticalAlignment="Top">
             <Button Content="Lưu" Width="80" Margin="0,0,10,0" Click="SaveButton_Click"/>
+            <Button Content="Xóa" Width="80" Margin="0,0,10,0" Click="DeleteButton_Click"/>
             <Button Content="Hủy" Width="80" Click="CancelButton_Click"/>
         </StackPanel>
     </Grid>

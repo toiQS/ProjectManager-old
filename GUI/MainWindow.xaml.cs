@@ -52,5 +52,12 @@ namespace GUI
         {
 
         }
+
+        private void TaskLevelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            TaskLevelsWindow taskLevelsWindow = new TaskLevelsWindow(); 
+            taskLevelsWindow.Show();
+        }
     }
 }

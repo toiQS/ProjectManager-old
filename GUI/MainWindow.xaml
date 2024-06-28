@@ -5,15 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="Trang chủ" Height="514" Width="800">
+        Title="Trang chủ" Height="629" Width="800">
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="443">
-            <TextBlock Text="Giao diện người dùng" HorizontalAlignment="Center" FontSize="18" Margin="0,0,0,20"/>
-            <Button Content="Project" Margin="0,10" Height="60" Width="155" Click="ProjectButton_Click"/>
-            <Button Content="Role" Margin="0,10" Height="60" Width="155" Click="RoleButton_Click"/>
-            <Button Content="Status" Margin="0,10" Height="60" Width="155" Click="StatusButton_Click"/>
-            <Button Content="Profile" Margin="0,10" Height="60" Width="155" Click="ProfileButton_Click"/>
-            <Button Content="Log Out" Height="60" Width="156" Click="LogoutButton_Click"/>
+        <!-- Define Rows and Columns -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Header -->
+            <RowDefinition Height="*"/>
+            <!-- Main Content -->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <!-- Side Panel -->
+            <ColumnDefinition Width="*"/>
+            <!-- Content Area -->
+        </Grid.ColumnDefinitions>
+
+        <!-- Header -->
+        <TextBlock Text="Giao diện người dùng" FontSize="18" FontWeight="Bold"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,20"
+                   Grid.Row="0" Grid.ColumnSpan="2"/>
+
+        <!-- Side Navigation Panel -->
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="20" Width="180">
+            <Button Content="Project" Margin="0,10" Height="60" Width="160" Click="ProjectButton_Click"/>
+            <Button Content="Role" Margin="0,10" Height="60" Width="160" Click="RoleButton_Click"/>
+            <Button Content="Status" Margin="0,10" Height="60" Width="160" Click="StatusButton_Click"/>
+            <Button Content="Profile" Margin="0,10" Height="60" Width="160" Click="ProfileButton_Click"/>
+            <Button Content="Task Level" Margin="0,10" Height="60" Width="160" Click="TaskLevelButton_Click"/>
         </StackPanel>
+
+        <!-- Placeholder for Main Content Area -->
+        <Border Grid.Row="1" Grid.Column="1" Background="#FFF0F0F0" Margin="20" CornerRadius="5">
+            <TextBlock Text="Chào mừng bạn đến với giao diện chính!" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" 
+                       Foreground="Gray" Padding="20"/>
+        </Border>
+        <Button Content="Log Out" Click="LogoutButton_Click" Margin="30,440,30,48" Grid.Row="1"/>
     </Grid>
 </Window>

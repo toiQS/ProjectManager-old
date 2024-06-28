@@ -1,6 +1,4 @@
-﻿using BUS._status;
-using DTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,39 +15,32 @@ using System.Windows.Shapes;
 namespace GUI
 {
     /// <summary>
-    /// Interaction logic for StatusWindow.xaml
+    /// Interaction logic for TaskLevelsWindow.xaml
     /// </summary>
-    public partial class StatusWindow : Window
+    public partial class TaskLevelsWindow : Window
     {
-        private readonly StatusBUS statusBUS;
-        public StatusWindow()
+        public TaskLevelsWindow()
         {
             InitializeComponent();
-            statusBUS = new StatusBUS();
-            StatusListView.ItemsSource = statusBUS.GetStatuses();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            AddStatusWindow addStatusWindow = new AddStatusWindow();
-            addStatusWindow.ShowDialog();
+           AddTaskLevelWindow addTaskLevelWindow = new AddTaskLevelWindow();
+            addTaskLevelWindow.ShowDialog();
         }
 
         private void ViewEditButton_Click(object sender, RoutedEventArgs e)
         {
-            if (StatusListView.SelectedItem is Status statusSelected)
-            {
-                int id = statusSelected.StatusID;
-                ViewStatusWindow viewStatusWindow = new ViewStatusWindow(id);
-                viewStatusWindow.ShowDialog();
-            }
+            ViewEditTaskLevelWindow view = new ViewEditTaskLevelWindow();
+            view.ShowDialog();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Hide();
             MainWindow mainWindow = new MainWindow();
-            mainWindow.ShowDialog();
+            mainWindow.Show();
         }
     }
 }
