@@ -19,9 +19,11 @@ namespace GUI
     /// </summary>
     public partial class ProjectDetailView : Window
     {
-        public ProjectDetailView()
+        private readonly int _projectId;    
+        public ProjectDetailView(int projectId)
         {
             InitializeComponent();
+            _projectId = projectId;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

@@ -7,22 +7,22 @@
         mc:Ignorable="d"
         Title="Danh sách dự án" Height="450" Width="801">
     <Grid>
-        <ListView HorizontalAlignment="Center" VerticalAlignment="Top" Width="760" Margin="10,10,10,0" Height="330" SelectionChanged="ListView_SelectionChanged">
+        <ListView Name="ProjectListView" HorizontalAlignment="Center" VerticalAlignment="Top" Width="760" Margin="10,10,10,0" Height="330" SelectionChanged="ListView_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Tên dự án" Width="100"/>
-                    <GridViewColumn Header="Tình trạng" Width="100"/>
-                    <GridViewColumn Header="Ngày bắt đầu" Width="150"/>
-                    <GridViewColumn Header="Ngày kết thúc" Width="150"/>
-                    <GridViewColumn Header="Người khởi tạo" Width="200"/>
-                    <GridViewColumn Header="Miêu tả dự án" Width="100"/>
+                    <GridViewColumn Header="Tên dự án" Width="150" DisplayMemberBinding="{Binding ProjectName}"/>
+                    <GridViewColumn Header="Tình trạng" Width="100" DisplayMemberBinding="{Binding Status}"/>
+                    <GridViewColumn Header="Ngày bắt đầu" Width="150" DisplayMemberBinding="{Binding StartAt, StringFormat=\{0:dd/MM/yyyy\}}"/>
+                    <GridViewColumn Header="Ngày kết thúc" Width="150" DisplayMemberBinding="{Binding EndAt, StringFormat=\{0:dd/MM/yyyy\}}"/>
+                    <GridViewColumn Header="Người khởi tạo" Width="200" DisplayMemberBinding="{Binding Creator}"/>
+                    <GridViewColumn Header="Miêu tả dự án" Width="200" DisplayMemberBinding="{Binding ProjectDescription}"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Height="40">
-            <Button Content="Thêm" Margin="5" Width="83" Click="AddProject_Click"/>
-            <Button Content="Xem" Margin="5" Width="83" Click="ViewProject_Click"/>
-            <Button Content="Trở về trang chủ" Margin="5" Width="130" Click="Button_Click"/>
+            <Button Content="Thêm" Margin="5" Width="100" Click="AddProject_Click" RenderTransformOrigin="0.5,0.5"/>
+            <Button Content="Xem/Chỉnh sửa" Margin="5" Width="130" Click="ViewEditProject_Click"/>
+            <Button Content="Trở về trang chủ" Margin="5" Width="150" Click="BackButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>
