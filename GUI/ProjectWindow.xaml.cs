@@ -8,7 +8,7 @@ namespace GUI
        
 
         public ProjectWindow()
-        {
+        { 
             InitializeComponent();
            
         }
