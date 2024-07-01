@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="Danh sách dự án" Height="450" Width="801">
+        Title="Danh sách dự án" Height="450" Width="616">
     <Grid>
-        <ListView Name="ProjectListView" HorizontalAlignment="Center" VerticalAlignment="Top" Width="760" Margin="10,10,10,0" Height="330" SelectionChanged="ListView_SelectionChanged">
+        <ListView Name="ProjectListView" HorizontalAlignment="Center" VerticalAlignment="Top" Width="552" Margin="0,10,0,0" Height="330">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Tên dự án" Width="150" DisplayMemberBinding="{Binding ProjectName}"/>
                     <GridViewColumn Header="Tình trạng" Width="100" DisplayMemberBinding="{Binding Status}"/>
                     <GridViewColumn Header="Ngày bắt đầu" Width="150" DisplayMemberBinding="{Binding StartAt, StringFormat=\{0:dd/MM/yyyy\}}"/>
                     <GridViewColumn Header="Ngày kết thúc" Width="150" DisplayMemberBinding="{Binding EndAt, StringFormat=\{0:dd/MM/yyyy\}}"/>
-                    <GridViewColumn Header="Người khởi tạo" Width="200" DisplayMemberBinding="{Binding Creator}"/>
-                    <GridViewColumn Header="Miêu tả dự án" Width="200" DisplayMemberBinding="{Binding ProjectDescription}"/>
+                    <!--<GridViewColumn Header="Người khởi tạo" Width="200" DisplayMemberBinding="{Binding Creator}"/>-->
+                    <!--<GridViewColumn Header="Miêu tả dự án" Width="200" DisplayMemberBinding="{Binding ProjectDescription}"/>-->
                 </GridView>
             </ListView.View>
         </ListView>
