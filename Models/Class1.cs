@@ -1,4 +1,4 @@
-﻿namespace DAL
+﻿namespace Models
 {
     public class Class1
     {

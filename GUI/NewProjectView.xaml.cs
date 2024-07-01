@@ -26,9 +26,7 @@ namespace GUI
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            Hide();
-            ProjectDetailView projectDetailView = new ProjectDetailView();
-            projectDetailView.Show();
+            
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

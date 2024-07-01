@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Models;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,29 @@ namespace GUI
     /// </summary>
     public partial class ProjectDetailView : Window
     {
-        public ProjectDetailView()
+        private readonly int _projectId;
+        private readonly Project_Services project_Services = new Project_Services();
+        private readonly User_Services user_Services = new User_Services();
+        private readonly Status_Services status_Services = new Status_Services();
+        public ProjectDetailView(int projectId)
         {
             InitializeComponent();
+            _projectId = projectId;
+            var data = project_Services.GetProject(id: _projectId);
+            var convert_data = new ProjectResponseDetail()
+            {
+                ProjectName = data.ProjectName,
+                CreateAt = data.CreateAt,
+                EndAt = data.EndAt,
+                Quantity_Member_Requied = data.Quantity_Member_Requied,
+                PersonalCreated = user_Services.GetUser(data.UserID).UserName,
+                ProjectDescription = data.ProjectDescription,
+                ProjectInfo = data.ProjectInfo,
+                StartAt = data.StartAt,
+                Status = status_Services.GetStatus(data.StatusID).StatusName,
+            };
+            ProjectNameTextBox.Text = data.ProjectName;
+            
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

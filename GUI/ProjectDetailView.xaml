@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="Project Detail" Height="773" Width="600">
+        Title="Chi tiết dự án" Height="773" Width="600">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -18,28 +18,25 @@
         <!-- Tên dự án -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
             <TextBlock Width="100" Text="Tên dự án:" VerticalAlignment="Center"/>
-            <TextBox Width="400" VerticalAlignment="Center"/>
+            <TextBox Name="ProjectNameTextBox" Width="400" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Ngày bắt đầu và kết thúc -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
             <TextBlock Width="100" Text="Ngày bắt đầu:" VerticalAlignment="Center"/>
-            <DatePicker Width="150" VerticalAlignment="Center"/>
+            <DatePicker Name="StartDatePicker" Width="150" VerticalAlignment="Center"/>
             <TextBlock Width="100" Margin="20,0,0,0" Text="Ngày kết thúc:" VerticalAlignment="Center"/>
-            <DatePicker Width="150" VerticalAlignment="Center"/>
+            <DatePicker Name="EndDatePicker" Width="150" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Số thành viên -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
             <TextBlock Width="100" Text="Số thành viên:" VerticalAlignment="Center"/>
-            <TextBox Width="50" VerticalAlignment="Center"/>
+            <TextBox Name="MemberCountTextBox" Width="50" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Miêu tả dự án -->
-        <StackPanel Grid.Row="3" Margin="0,20,0,10">
-            <TextBlock Text="Miêu tả dự án:" VerticalAlignment="Top"/>
-            <TextBox TextWrapping="Wrap" AcceptsReturn="True" Height="150" VerticalScrollBarVisibility="Auto"/>
-        </StackPanel>
+        <StackPanel Grid.Row="3" Margin="0,31,0,49" Grid.RowSpan="2"/>
 
         <!-- Các nút chức năng -->
         <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Bottom">
@@ -50,14 +47,22 @@
             <Button Content="Quản lý tiến độ" Margin="0,20,10,10" Width="112" Click="ManageProgress_Click"/>
         </StackPanel>
 
-        <!-- Additional controls (if needed) -->
-        <ComboBox Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="284" Margin="158,211,0,0"/>
-        <Label Grid.Row="3" Content="Tình trạng dự án" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,214,0,0"/>
-        <Label Grid.Row="3" Content="Người khởi tạo dự án" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,245,0,0"/>
-        <TextBox Grid.Row="3" Margin="158,249,0,0" VerticalAlignment="Top" Height="18" Width="216"/>
-        <DatePicker Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="182" Height="25" Margin="158,287,0,0"/>
-        <Label Grid.Row="3" Content="Ngày khởi tạo" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,287,0,0" Height="25" Width="107"/>
-        <Label Grid.Row="3" Content="Thông tin dự án" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,326,0,0" Height="25" Width="107"/>
-        <TextBox Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Height="216" Width="560" Margin="0,356,0,0"/>
+        <!-- Tình trạng dự án -->
+        <Label Grid.Row="3" Content="Tình trạng dự án" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+        <ComboBox Name="StatusComboBox" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="284" Margin="158,0,0,10"/>
+
+        <!-- Người khởi tạo dự án -->
+        <Label Grid.Row="3" Content="Người khởi tạo dự án" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,50,0,0"/>
+        <TextBox Name="CreatorTextBox" Grid.Row="3" Margin="158,50,0,0" VerticalAlignment="Top" Width="216"/>
+
+        <!-- Ngày khởi tạo -->
+        <Label Grid.Row="3" Content="Ngày khởi tạo" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,100,0,0"/>
+        <DatePicker Name="CreationDatePicker" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="182" Margin="158,100,0,0"/>
+
+        <!-- Thông tin dự án -->
+        <Label Grid.Row="3" Content="Thông tin dự án" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,150,0,0"/>
+        <TextBox Name="InfoTextBox" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Height="150" Width="560" Margin="0,200,0,0"/>
+        <TextBox x:Name="DescriptionTextBox" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Margin="0,394,0,33" Grid.Row="3"/>
+        <TextBlock Text="Miêu tả dự án:" VerticalAlignment="Top" Margin="0,373,0,0" Grid.Row="3"/>
     </Grid>
 </Window>
