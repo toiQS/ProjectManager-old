@@ -89,8 +89,8 @@ namespace Services
 
             // Seeding Members in Project
             modelBuilder.Entity<Member_In_Project>().HasData(
-                new Member_In_Project { MemberID = 1, ProjectID = 1, RoleID = 1 },
-                new Member_In_Project { MemberID = 2, ProjectID = 1, RoleID = 2 }
+                new Member_In_Project { MemberID = 1, ProjectID = 1, RoleID = 1, UserID = 1 },
+                new Member_In_Project { MemberID = 2, ProjectID = 1, RoleID = 2, UserID = 2 }
             );
         }
     }

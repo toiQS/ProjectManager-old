@@ -14,9 +14,9 @@ namespace Services
             _context = new ApplicationDbContext();
         }
 
-        public List<Member_In_Project> GetMembersInProject()
+        public List<Member_In_Project> GetMembersInProject(int projectID)
         {
-            return _context.Member_In_Projects.ToList();
+            return _context.Member_In_Projects.Where(x => x.ProjectID == projectID).ToList();
         }
 
         public Member_In_Project GetMemberInProject(int memberId, int projectId)

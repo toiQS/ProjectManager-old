@@ -5,53 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="Edit Project" Height="495" Width="600">
-    <Grid Margin="20">
+        Title="Edit Project" Height="487" Width="600" WindowStartupLocation="CenterScreen">
+    <Grid Margin="20,20,20,0" Height="522" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto" MinHeight="300.04"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
         <!-- Tên dự án -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Width="100" Content="Tên dự án:" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtProjectName" Width="400" VerticalAlignment="Center"/>
-        </StackPanel>
+        <Label Grid.Column="0" Content="Tên dự án:" VerticalAlignment="Center" Margin="0,0,10,0" Height="26"/>
+        <TextBox x:Name="txtProjectName" Grid.Column="1" VerticalAlignment="Center" Margin="27,0,26,0" Height="18"/>
 
         <!-- Ngày bắt đầu và kết thúc -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Width="100" Content="Ngày bắt đầu:" VerticalAlignment="Center"/>
-            <DatePicker x:Name="dpStartAt" Width="150" VerticalAlignment="Center"/>
-            <Label Width="100" Margin="20,0,0,0" Content="Ngày kết thúc:" VerticalAlignment="Center"/>
-            <DatePicker x:Name="dpEndAt" Width="150" VerticalAlignment="Center"/>
-        </StackPanel>
+        <Label Grid.Row="1" Grid.Column="0" Content="Ngày bắt đầu:" VerticalAlignment="Center" Margin="0,0,10,0" Height="26"/>
+        <DatePicker x:Name="dpStartAt" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="152,0,151,0" Height="24"/>
 
-        <!-- Số thành viên -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Width="100" Content="Số thành viên:" VerticalAlignment="Center"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Ngày kết thúc:" VerticalAlignment="Center" Margin="0,0,10,0" Height="26"/>
+        <DatePicker x:Name="dpEndAt" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="152,0,151,0" Height="24"/>
+
+        <!-- Số thành viên và Tình trạng -->
+        <Label Grid.Row="3" Grid.Column="0" Content="Số thành viên:" VerticalAlignment="Center" Margin="0,0,10,0" Height="26"/>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="107,0,0,0">
             <TextBox x:Name="txtMember" Width="50" VerticalAlignment="Center"/>
+            <Label Content="Tình trạng:" VerticalAlignment="Center" Margin="20,0,10,0"/>
+            <ComboBox x:Name="cbStatus" Width="200" VerticalAlignment="Center"/>
         </StackPanel>
 
         <!-- Miêu tả dự án -->
-        <StackPanel Grid.Row="3" Margin="0,0,0,10">
-            <Label Content="Miêu tả dự án:" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtProjectDescription" TextWrapping="Wrap" AcceptsReturn="True" Height="100" VerticalScrollBarVisibility="Auto"/>
-        </StackPanel>
+        <Label Grid.Row="4" Grid.Column="0" Content="Miêu tả dự án:" VerticalAlignment="Top" Margin="0,0,10,0" Height="26"/>
+        <TextBox x:Name="txtProjectDescription" Grid.Row="4" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Margin="1,0,10,0" Grid.Column="1" Height="113" VerticalAlignment="Top"/>
 
         <!-- Thông tin dự án -->
-        <StackPanel Grid.Row="4" Margin="0,0,0,10">
-            <Label Content="Thông tin dự án:" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtProjectInfo" TextWrapping="Wrap" AcceptsReturn="True" Height="100" VerticalScrollBarVisibility="Auto"/>
-        </StackPanel>
+        <Label Grid.Row="5" Grid.Column="0" Content="Thông tin dự án:" VerticalAlignment="Top" Margin="0,0,10,0" Height="26"/>
+        <TextBox x:Name="txtProjectInfo" Grid.Row="5" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Margin="107,2,10,0" Height="128" VerticalAlignment="Top"/>
 
         <!-- Các nút chức năng -->
-        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-            <Button Content="Lưu" Width="100" Margin="0,0,10,0" Click="Save_Click"/>
-            <Button Content="Hủy" Width="100" Click="Cancel_Click"/>
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,150,0,0" Width="368" Height="57" VerticalAlignment="Top">
+            <Button Content="Lưu" Margin="50,0,50,0" Click="Save_Click" Height="31" Width="100"/>
+            <Button Content="Hủy"  Click="Cancel_Click" Height="31" Width="100"/>
         </StackPanel>
     </Grid>
 </Window>

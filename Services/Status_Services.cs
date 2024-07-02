@@ -112,5 +112,16 @@ namespace Services
                 return false;
             }
         }
+        public int GetIdByText(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new Exception("Can be null here");
+            }
+            var data = _context.Statuss.FirstOrDefault(x => x.StatusName.ToLower() == text.ToLower());
+            if (data != null)
+                return data.StatusID;
+            throw new Exception("Not Found");
+        }
     }
 }

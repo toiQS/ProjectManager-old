@@ -1,55 +1,66 @@
 ﻿using Models;
 using Services;
+using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace GUI
 {
     public partial class ProjectWindow : Window
     {
-       
-        private readonly Project_Services project_Services = new Project_Services();
-        private readonly User_Services user_Services = new User_Services();
-        private readonly Status_Services status_Services = new Status_Services();
+        private readonly Project_Services _projectServices = new Project_Services();
+        private readonly User_Services _userServices = new User_Services();
+        private readonly Status_Services _statusServices = new Status_Services();
+
         public ProjectWindow()
-        { 
+        {
             InitializeComponent();
-            var data = project_Services.GetProjects()
+            LoadProjects();
+        }
+
+        private void LoadProjects()
+        {
+            var data = _projectServices.GetProjects()
                 .Select(x => new ProjectResponse()
                 {
+                    ProjectID = x.ProjectID,
                     EndAt = x.EndAt,
-                    //PersonalCreated = user_Services.GetUser(x.UserID).UserName,
+                    PersonalCreated = _userServices.GetUser(x.UserID)?.UserName ?? "Unknown",
                     ProjectName = x.ProjectName,
                     StartAt = x.StartAt,
-                    Status = status_Services.GetStatus(x.StatusID).StatusName,
-                });
-            ProjectListView.ItemsSource  = data;
-            
+                    Status = _statusServices.GetStatus(x.StatusID)?.StatusName ?? "Unknown"
+                }).ToList();
+
+            ProjectListView.ItemsSource = data;
         }
 
         private void AddProject_Click(object sender, RoutedEventArgs e)
         {
-            Hide();
             NewProjectView newProjectView = new NewProjectView();
-            newProjectView.Closed += (s, args) => Show(); // Ensure to show this window again after closing newProjectView
+            newProjectView.Closed += (s, args) => { Show(); LoadProjects(); };
+            Hide();
             newProjectView.Show();
         }
 
         private void ViewEditProject_Click(object sender, RoutedEventArgs e)
         {
-            if (ProjectListView.SelectedItem is Project project_selected)
+            if (ProjectListView.SelectedItem is ProjectResponse projectSelected)
             {
-                ProjectDetailView projectDetailView = new ProjectDetailView(project_selected.ProjectID);
+                ProjectDetailView projectDetailView = new ProjectDetailView(projectSelected.ProjectID);
+                //projectDetailView.Closed += (s, args) => { Show(); LoadProjects(); };
+                Hide();
                 projectDetailView.Show();
             }
-            
+            else
+            {
+                MessageBox.Show("Please select a project from the list.", "No Project Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            Hide();
             MainWindow mainWindow = new MainWindow();
-            mainWindow.Closed += (s, args) => Show(); // Ensure to show this window again after closing mainWindow
+            mainWindow.Closed += (s, args) => Show();
+            Hide();
             mainWindow.Show();
         }
     }

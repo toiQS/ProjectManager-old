@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Services.Migrations
 {
     /// <inheritdoc />
-    public partial class PMaddmigrationmodelseedingdata : Migration
+    public partial class PMseedingdata : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -148,6 +148,7 @@ namespace Services.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProjectID = table.Column<int>(type: "int", nullable: false),
                     RoleID = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false),
                     Task_In_ProjectTaskID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -212,7 +213,7 @@ namespace Services.Migrations
             migrationBuilder.InsertData(
                 table: "Projects",
                 columns: new[] { "ProjectID", "CreateAt", "EndAt", "ProjectDescription", "ProjectInfo", "ProjectName", "Quantity_Member_Requied", "StartAt", "StatusID", "UserID" },
-                values: new object[] { 1, new DateTime(2024, 4, 1, 12, 47, 38, 96, DateTimeKind.Local).AddTicks(8529), new DateTime(2024, 8, 1, 12, 47, 38, 96, DateTimeKind.Local).AddTicks(8547), "A complete overhaul of the corporate website.", "Redesigning the corporate website.", "Website Redesign", 5, new DateTime(2024, 5, 1, 12, 47, 38, 96, DateTimeKind.Local).AddTicks(8546), 2, 1 });
+                values: new object[] { 1, new DateTime(2024, 4, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(337), new DateTime(2024, 8, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(359), "A complete overhaul of the corporate website.", "Redesigning the corporate website.", "Website Redesign", 5, new DateTime(2024, 5, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(357), 2, 1 });
 
             migrationBuilder.InsertData(
                 table: "Task_Level",
@@ -221,17 +222,17 @@ namespace Services.Migrations
 
             migrationBuilder.InsertData(
                 table: "Member_In_Projects",
-                columns: new[] { "MemberID", "ProjectID", "RoleID", "Task_In_ProjectTaskID" },
+                columns: new[] { "MemberID", "ProjectID", "RoleID", "Task_In_ProjectTaskID", "UserID" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, null },
-                    { 2, 1, 2, null }
+                    { 1, 1, 1, null, 1 },
+                    { 2, 1, 2, null, 2 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Task_In_Projects",
                 columns: new[] { "TaskID", "CreateAt", "EndAt", "ProjectID", "StartAt", "TaskDescription", "TaskLevelID", "TaskName" },
-                values: new object[] { 1, new DateTime(2024, 5, 1, 12, 47, 38, 96, DateTimeKind.Local).AddTicks(8590), new DateTime(2024, 8, 1, 12, 47, 38, 96, DateTimeKind.Local).AddTicks(8593), 1, new DateTime(2024, 6, 1, 12, 47, 38, 96, DateTimeKind.Local).AddTicks(8592), "Create design mockups for the new website.", 1, "Design Mockups" });
+                values: new object[] { 1, new DateTime(2024, 5, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(402), new DateTime(2024, 8, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(404), 1, new DateTime(2024, 6, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(403), "Create design mockups for the new website.", 1, "Design Mockups" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Member_In_Projects_ProjectID",

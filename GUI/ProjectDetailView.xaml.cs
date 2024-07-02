@@ -28,10 +28,11 @@ namespace GUI
         public ProjectDetailView(int projectId)
         {
             InitializeComponent();
-            _projectId = projectId;
-            var data = project_Services.GetProject(id: _projectId);
+            
+            var data = project_Services.GetProject(projectId);
             var convert_data = new ProjectResponseDetail()
             {
+                ProjectID = data.ProjectID,
                 ProjectName = data.ProjectName,
                 CreateAt = data.CreateAt,
                 EndAt = data.EndAt,
@@ -41,9 +42,28 @@ namespace GUI
                 ProjectInfo = data.ProjectInfo,
                 StartAt = data.StartAt,
                 Status = status_Services.GetStatus(data.StatusID).StatusName,
-            };
-            ProjectNameTextBox.Text = data.ProjectName;
-            
+            }; 
+            ProjectNameTextBox.Text = convert_data.ProjectName;
+            StartDatePicker.SelectedDate = convert_data.StartAt;
+            EndDatePicker.SelectedDate = convert_data.EndAt;
+            InfoTextBox.Text = convert_data.ProjectInfo;
+            DescriptionTextBox.Text = convert_data.ProjectDescription;
+            CreationDatePicker.SelectedDate = convert_data.CreateAt;
+            CreatorTextBox.Text = convert_data.PersonalCreated;
+            //StatusComboBox.ItemsSource = status_Services.GetStatuses();
+            //StatusComboBox.SelectedItem = StatusComboBox.Items.Cast<Status>()
+            //    .FirstOrDefault(s => s.StatusName == convert_data.Status);
+            var load_data_status = status_Services.GetStatuses();
+            var array_data_status = new List<string>();
+            foreach (var item in load_data_status)
+            {
+                array_data_status.Add(item.StatusName);
+            }
+            StatusComboBox.ItemsSource = array_data_status;
+            StatusComboBox.SelectedItem = array_data_status
+                 .FirstOrDefault(status => status == convert_data.Status);
+            MemberCountTextBox.Text = Convert.ToString(convert_data.Quantity_Member_Requied);
+            _projectId = convert_data.ProjectID;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -57,13 +77,21 @@ namespace GUI
         private void EditProject_Click(object sender, RoutedEventArgs e)
         {
             Hide();
-            EditProjectView projectView = new EditProjectView();
+            EditProjectView projectView = new EditProjectView(_projectId);
             projectView.Show();
         }
 
         private void DeleteProject_Click(object sender, RoutedEventArgs e)
         {
-
+            var result = project_Services.DeleteProject(_projectId);
+            if (result)
+            {
+                MessageBox.Show("Confirm", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Project delete false", "Message", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void ManageProgress_Click(object sender, RoutedEventArgs e)
@@ -74,7 +102,7 @@ namespace GUI
 
         private void ManageMembers_Click(object sender, RoutedEventArgs e)
         {
-            ProjectMembersView projectMembersView = new ProjectMembersView();
+            ProjectMembersView projectMembersView = new ProjectMembersView(_projectId);
             projectMembersView.Show();
         }
     }
