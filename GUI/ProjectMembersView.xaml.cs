@@ -33,10 +33,12 @@ namespace GUI
                 .Select(x => new MemberResponse()
                 {
                     MemberID = x.MemberID,
-                    ProjectID = x.ProjectID,
-                    RoleID = x.RoleID,
                     
+                    UserName = user_Services.GetUser(x.UserID).UserName,
+                    RoleName = role_Services.GetRole(x.RoleID).RoleName,
                 });
+            
+            MembersDataGrid.ItemsSource = data;
         }
 
         private void AddMember_Click(object sender, RoutedEventArgs e)
@@ -47,13 +49,28 @@ namespace GUI
 
         private void RemoveMember_Click(object sender, RoutedEventArgs e)
         {
-
+            if(MembersDataGrid.SelectedItem is MemberResponse member_selected)
+            {
+                var result = member_In_Project.DeleteMemberFromProject(member_selected.MemberID, _projectID);
+                if (result)
+                {
+                    MessageBox.Show("Confirm", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Member delete false", "Message", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void AdjustRole_Click(object sender, RoutedEventArgs e)
         {
-            EditMemberRoleView editMemberRoleView = new EditMemberRoleView();   
-            editMemberRoleView.Show();
+            if (MembersDataGrid.SelectedItem is MemberResponse member_selected)
+            {
+                EditMemberRoleView editMemberRoleView = new EditMemberRoleView(_projectID, member_selected.MemberID);
+                editMemberRoleView.Show();
+            }
+                
         }
     }
 }

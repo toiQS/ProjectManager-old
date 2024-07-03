@@ -119,5 +119,18 @@ namespace Services
                     .Any(x => x.RoleName.ToLower() == name.ToLower());
             return check_name_exist;
         }
+        public int GetRoleByText(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new Exception("Can be null here");
+            }
+            var data = _context.Roles
+                .Where(x => x.RoleName.ToLower() == text.ToLower())
+                .FirstOrDefault();
+            if(data != null)
+                return data.RoleID;
+            throw new Exception("Not Found");
+        }
     }
 }
