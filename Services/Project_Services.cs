@@ -80,7 +80,7 @@ namespace Services
         }
 
         // Update an existing project
-        public bool UpdateProject(int id, string name, string info, string description, DateTime startAt, DateTime endAt, int quantityMemberRequired, int statusId, int userId)
+        public bool UpdateProject(int id, string name, string info, string description, DateTime startAt, DateTime endAt, int quantityMemberRequired, int statusId)
         {
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(info) || id == 0 || quantityMemberRequired <= 0)
             {
@@ -101,7 +101,7 @@ namespace Services
                     project.EndAt = endAt;
                     project.Quantity_Member_Requied = quantityMemberRequired;
                     project.StatusID = statusId;
-                    project.UserID = userId;
+                    
 
                     _context.Projects.Update(project);
                     _context.SaveChanges();

@@ -60,7 +60,7 @@
         <DatePicker Name="CreationDatePicker" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="182" Margin="158,100,0,0"/>
 
         <!-- Thông tin dự án -->
-        <Label Grid.Row="3" Content="Thông tin dự án" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,150,0,0"/>
+        <Label Grid.Row="3" Content="Thông tin dự án" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,169,0,0"/>
         <TextBox Name="InfoTextBox" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Height="150" Width="560" Margin="0,200,0,0"/>
         <TextBox x:Name="DescriptionTextBox" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Margin="0,394,0,33" Grid.Row="3"/>
         <TextBlock Text="Miêu tả dự án:" VerticalAlignment="Top" Margin="0,373,0,0" Grid.Row="3"/>

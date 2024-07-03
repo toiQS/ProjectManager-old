@@ -29,15 +29,16 @@ namespace Models
     }
     public class ProjectResponse
     {
-       
+        public int ProjectID { get; set; }
         public string ProjectName { get; set;} = string.Empty;
         public string Status { get; set; } = string.Empty;
         public DateTime StartAt { get; set; }
         public DateTime EndAt { get; set; }
-        
+        public string PersonalCreated { get; set; } = string.Empty;
     }
     public class ProjectResponseDetail
     {
+        public int ProjectID { get; set; }
         public string ProjectName { get; set; } = string.Empty;
         public string ProjectInfo { get; set; } = string.Empty;
         public string ProjectDescription { get; set; } = string.Empty;

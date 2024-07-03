@@ -12,8 +12,8 @@ using Services;
 namespace Services.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240701054738_PM-add-migration-model-seeding-data")]
-    partial class PMaddmigrationmodelseedingdata
+    [Migration("20240702134838_PM-seeding-data")]
+    partial class PMseedingdata
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,6 +42,9 @@ namespace Services.Migrations
                     b.Property<int?>("Task_In_ProjectTaskID")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
                     b.HasKey("MemberID");
 
                     b.HasIndex("ProjectID");
@@ -57,13 +60,15 @@ namespace Services.Migrations
                         {
                             MemberID = 1,
                             ProjectID = 1,
-                            RoleID = 1
+                            RoleID = 1,
+                            UserID = 1
                         },
                         new
                         {
                             MemberID = 2,
                             ProjectID = 1,
-                            RoleID = 2
+                            RoleID = 2,
+                            UserID = 2
                         });
                 });
 
@@ -117,13 +122,13 @@ namespace Services.Migrations
                         new
                         {
                             ProjectID = 1,
-                            CreateAt = new DateTime(2024, 4, 1, 12, 47, 38, 96, DateTimeKind.Local).AddTicks(8529),
-                            EndAt = new DateTime(2024, 8, 1, 12, 47, 38, 96, DateTimeKind.Local).AddTicks(8547),
+                            CreateAt = new DateTime(2024, 4, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(337),
+                            EndAt = new DateTime(2024, 8, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(359),
                             ProjectDescription = "A complete overhaul of the corporate website.",
                             ProjectInfo = "Redesigning the corporate website.",
                             ProjectName = "Website Redesign",
                             Quantity_Member_Requied = 5,
-                            StartAt = new DateTime(2024, 5, 1, 12, 47, 38, 96, DateTimeKind.Local).AddTicks(8546),
+                            StartAt = new DateTime(2024, 5, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(357),
                             StatusID = 2,
                             UserID = 1
                         });
@@ -248,10 +253,10 @@ namespace Services.Migrations
                         new
                         {
                             TaskID = 1,
-                            CreateAt = new DateTime(2024, 5, 1, 12, 47, 38, 96, DateTimeKind.Local).AddTicks(8590),
-                            EndAt = new DateTime(2024, 8, 1, 12, 47, 38, 96, DateTimeKind.Local).AddTicks(8593),
+                            CreateAt = new DateTime(2024, 5, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(402),
+                            EndAt = new DateTime(2024, 8, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(404),
                             ProjectID = 1,
-                            StartAt = new DateTime(2024, 6, 1, 12, 47, 38, 96, DateTimeKind.Local).AddTicks(8592),
+                            StartAt = new DateTime(2024, 6, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(403),
                             TaskDescription = "Create design mockups for the new website.",
                             TaskLevelID = 1,
                             TaskName = "Design Mockups"

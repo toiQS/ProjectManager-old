@@ -19,7 +19,7 @@ namespace GUI
     /// </summary>
     public partial class ManageTasksView : Window
     {
-        public ManageTasksView()
+        public ManageTasksView(int projectID)
         {
             InitializeComponent();
         }

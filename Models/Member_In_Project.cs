@@ -18,5 +18,15 @@ namespace Models
         [ForeignKey(nameof(Role))]
         public int RoleID {  get; set; }
         public virtual Role Role { get; set; }
+        
+        public int UserID { get; set; }
+        
+    }
+    public class MemberResponse
+    {
+        public int MemberID { get; set; }
+       
+        public string UserName { get; set; } = string.Empty;
+        public string RoleName {  get; set; } = string.Empty;
     }
 }
