@@ -143,5 +143,16 @@ namespace Services
                 return false;
             }
         }
+        public int GetProjectIdByText(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new Exception(text);
+            }
+            var data = _context.Projects.Where(x => x.ProjectName.ToLower() == text.ToLower()).FirstOrDefault();
+            if(data != null)
+                return data.ProjectID;
+            throw new Exception("Not Found");
+        }
     }
 }

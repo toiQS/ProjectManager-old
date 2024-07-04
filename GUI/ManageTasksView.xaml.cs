@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Models;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,28 @@ namespace GUI
     /// </summary>
     public partial class ManageTasksView : Window
     {
+        private readonly Task_In_Project_Services task_In_Project_Services = new Task_In_Project_Services();
+        private readonly Task_Level_Services task_Level_Services = new Task_Level_Services();
+        private readonly Project_Services project_Services = new Project_Services();
+        private readonly int _projectID;
+
         public ManageTasksView(int projectID)
         {
+            _projectID = projectID;
             InitializeComponent();
+            var data = task_In_Project_Services
+                .GetTasks(_projectID)
+                .Select(x => new Task_Project_Response()
+                {
+                    TaskID = x.TaskID,
+                    TaskName = x.TaskName,
+                    StartAt = x.StartAt,
+                    EndAt = x.EndAt,
+                    ProjectName = project_Services.GetProject(x.ProjectID).ProjectName,
+                    TaskLevelName = task_Level_Services.GetTaskLevel(x.TaskID).TaskName,
+                    TaskDescription = x.TaskDescription,
+                });
+            TasksDataGrid.ItemsSource = data;
         }
 
         private void AddTask_Click(object sender, RoutedEventArgs e)

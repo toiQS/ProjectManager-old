@@ -26,4 +26,15 @@ namespace Models
         // danh sach nguoi phu trach cong viec
         public List<Member_In_Project> Members { get; set; } = new List<Member_In_Project> { };
     }
+    public class Task_Project_Response
+    {
+        public int TaskID { get; set; }
+        public string TaskName { get; set; } = string.Empty;
+        public string TaskDescription { get; set; } = string.Empty;
+        public DateTime StartAt { get; set; }
+        public DateTime EndAt { get; set; }
+        public string ProjectName { get; set; } = string.Empty;
+        public string TaskLevelName {  get; set; } = string.Empty;
+
+    }
 }

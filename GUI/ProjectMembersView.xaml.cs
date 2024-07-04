@@ -70,6 +70,10 @@ namespace GUI
                 EditMemberRoleView editMemberRoleView = new EditMemberRoleView(_projectID, member_selected.MemberID);
                 editMemberRoleView.Show();
             }
+            else
+            {
+                MessageBox.Show("");
+            }
                 
         }
     }

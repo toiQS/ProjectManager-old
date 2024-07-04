@@ -44,7 +44,7 @@
             <Button Content="Quản lý thành viên" Width="100" Margin="0,20,10,10" Click="ManageMembers_Click"/>
             <Button Content="Chỉnh sửa dự án" Width="100" Margin="0,20,10,10" Click="EditProject_Click"/>
             <Button Content="Xóa" Margin="0,20,10,10" Width="83" Click="DeleteProject_Click"/>
-            <Button Content="Quản lý tiến độ" Margin="0,20,10,10" Width="112" Click="ManageProgress_Click"/>
+            <Button Content="Quản lý nhiệm vụ" Margin="0,20,10,10" Width="112" Click="ManageProgress_Click"/>
         </StackPanel>
 
         <!-- Tình trạng dự án -->

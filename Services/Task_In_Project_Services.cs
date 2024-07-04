@@ -15,9 +15,11 @@ namespace Services
         }
 
         // Get all tasks
-        public List<Task_In_Project> GetTasks()
+        public List<Task_In_Project> GetTasks(int projectID)
         {
-            return _context.Task_In_Projects.ToList();
+            return _context.Task_In_Projects
+                .Where(x => x.ProjectID == projectID)
+                .ToList();
         }
 
         // Get a task by ID

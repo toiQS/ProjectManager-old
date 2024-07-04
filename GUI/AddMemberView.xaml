@@ -27,14 +27,14 @@
 
         <!-- Project ID -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Content="Mã Số Dự Án" Width="150" VerticalAlignment="Center"/>
-            <ComboBox x:Name="ProjectIDComboBox" Width="200"/>
+            <Label Content="Tên Dự Án" Width="150" VerticalAlignment="Center"/>
+            <ComboBox x:Name="ProjectNameComboBox" Width="200"/>
         </StackPanel>
 
         <!-- Role ID -->
         <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,10">
             <Label Content="Vai Trò Dự Án" Width="150" VerticalAlignment="Center"/>
-            <ComboBox x:Name="RoleIDComboBox" Width="200"/>
+            <ComboBox x:Name="RoleNameComboBox" Width="200"/>
         </StackPanel>
 
         <!-- Buttons -->

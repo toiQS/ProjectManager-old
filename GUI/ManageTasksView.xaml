@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="Manage Tasks" Height="500" Width="900">
+        Title="Manage Tasks" Height="500" Width="1143">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,13 +19,13 @@
         <!-- Tasks List -->
         <DataGrid x:Name="TasksDataGrid" Grid.Row="1" AutoGenerateColumns="False" Margin="0,0,0,20" SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="50"/>
-                <DataGridTextColumn Header="Tiêu đề" Binding="{Binding Title}" Width="200"/>
-                <DataGridTextColumn Header="Thông tin" Binding="{Binding Info}" Width="300"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding TaskID}" Width="50"/>
+                <DataGridTextColumn Header="Tiêu đề" Binding="{Binding TaskName}" Width="200"/>
+                <DataGridTextColumn Header="Thông tin" Binding="{Binding TaskDescription}" Width="300"/>
                 <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding StartAt, StringFormat=dd/MM/yyyy}" Width="150"/>
                 <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding EndAt, StringFormat=dd/MM/yyyy}" Width="150"/>
-                <DataGridTextColumn Header="ID dự án" Binding="{Binding ProjectID}" Width="100"/>
-                <DataGridTextColumn Header="Cấp độ nhiệm vụ" Binding="{Binding LevelTaskID}" Width="150"/>
+                <DataGridTextColumn Header="Tên dự án" Binding="{Binding ProjectName}" Width="100"/>
+                <DataGridTextColumn Header="Cấp độ nhiệm vụ" Binding="{Binding TaskLevelName}" Width="150"/>
             </DataGrid.Columns>
         </DataGrid>
 
