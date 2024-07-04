@@ -96,7 +96,7 @@ namespace GUI
 
         private void ManageProgress_Click(object sender, RoutedEventArgs e)
         {
-            ManageTasksView projectView = new ManageTasksView();
+            ManageTasksView projectView = new ManageTasksView(_projectId);
             projectView.Show();
         }
 
