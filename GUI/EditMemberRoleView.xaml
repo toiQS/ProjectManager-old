@@ -5,39 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="Điều Chỉnh Vai Trò Thành Viên" Height="300" Width="500">
+        Title="Điều Chỉnh Vai Trò Thành Viên" Height="177" Width="500">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="23.7866666666667"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <!-- Header -->
         <TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" Text="Điều Chỉnh Vai Trò Thành Viên" Margin="0,0,0,20"/>
 
-        <!-- Select Member -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Content="Chọn Thành Viên:" Width="150" VerticalAlignment="Center"/>
-            <ComboBox x:Name="MemberComboBox" Width="250" DisplayMemberPath="UserName" SelectedValuePath="ID"/>
-        </StackPanel>
+
 
         <!-- Select New Role -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
+        <StackPanel Orientation="Horizontal" Margin="0,41,0,10" Grid.RowSpan="2">
             <Label Content="Vai Trò Mới:" Width="150" VerticalAlignment="Center"/>
             <ComboBox x:Name="RoleComboBox" Width="250" DisplayMemberPath="RoleName" SelectedValuePath="ID"/>
         </StackPanel>
 
-        <!-- Select Project -->
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Content="Chọn Dự Án:" Width="150" VerticalAlignment="Center"/>
-            <ComboBox x:Name="ProjectComboBox" Width="250" DisplayMemberPath="ProjectName" SelectedValuePath="ID"/>
-        </StackPanel>
+
 
         <!-- Buttons -->
-        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0" Width="210" Height="26" VerticalAlignment="Top">
             <Button Content="Cập Nhật" Width="100" Click="UpdateRole_Click" Margin="0,0,10,0"/>
             <Button Content="Hủy" Width="100" Click="Cancel_Click"/>
         </StackPanel>
