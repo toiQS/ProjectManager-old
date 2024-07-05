@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="Manage Project Members" Height="450" Width="447">
+        Title="Manage Project Members" Height="450" Width="550">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -30,7 +30,8 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Thêm thành viên" Width="120" Margin="0,0,10,0" Click="AddMember_Click"/>
             <Button Content="Xóa thành viên" Width="120" Margin="0,0,10,0" Click="RemoveMember_Click"/>
-            <Button Content="Điều chỉnh vai trò" Width="120" Click="AdjustRole_Click"/>
+            <Button Content="Điều chỉnh vai trò" Width="120" Click="AdjustRole_Click" Margin="0,0,10,0"/>
+            <Button Content="Quay lại" Width="120" Click="Back_Click" Margin="0,0,10,0"/>
         </StackPanel>
     </Grid>
 </Window>
