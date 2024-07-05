@@ -1,18 +1,8 @@
 ﻿using Models;
 using Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace GUI
 {
@@ -25,87 +15,125 @@ namespace GUI
         private readonly Project_Services project_Services = new Project_Services();
         private readonly User_Services user_Services = new User_Services();
         private readonly Status_Services status_Services = new Status_Services();
+
         public ProjectDetailView(int projectId)
         {
             InitializeComponent();
-            
-            var data = project_Services.GetProject(projectId);
-            var convert_data = new ProjectResponseDetail()
+            _projectId = projectId;
+            LoadProjectDetails();
+        }
+
+        private void LoadProjectDetails()
+        {
+            try
             {
-                ProjectID = data.ProjectID,
-                ProjectName = data.ProjectName,
-                CreateAt = data.CreateAt,
-                EndAt = data.EndAt,
-                Quantity_Member_Requied = data.Quantity_Member_Requied,
-                PersonalCreated = user_Services.GetUser(data.UserID).UserName,
-                ProjectDescription = data.ProjectDescription,
-                ProjectInfo = data.ProjectInfo,
-                StartAt = data.StartAt,
-                Status = status_Services.GetStatus(data.StatusID).StatusName,
-            }; 
-            ProjectNameTextBox.Text = convert_data.ProjectName;
-            StartDatePicker.SelectedDate = convert_data.StartAt;
-            EndDatePicker.SelectedDate = convert_data.EndAt;
-            InfoTextBox.Text = convert_data.ProjectInfo;
-            DescriptionTextBox.Text = convert_data.ProjectDescription;
-            CreationDatePicker.SelectedDate = convert_data.CreateAt;
-            CreatorTextBox.Text = convert_data.PersonalCreated;
-            //StatusComboBox.ItemsSource = status_Services.GetStatuses();
-            //StatusComboBox.SelectedItem = StatusComboBox.Items.Cast<Status>()
-            //    .FirstOrDefault(s => s.StatusName == convert_data.Status);
-            var load_data_status = status_Services.GetStatuses();
-            var array_data_status = new List<string>();
-            foreach (var item in load_data_status)
-            {
-                array_data_status.Add(item.StatusName);
+                var data = project_Services.GetProject(_projectId);
+                if (data == null) throw new Exception("Project data is null");
+
+                var convert_data = new ProjectResponseDetail()
+                {
+                    ProjectID = data.ProjectID,
+                    ProjectName = data.ProjectName,
+                    CreateAt = data.CreateAt,
+                    EndAt = data.EndAt,
+                    Quantity_Member_Requied = data.Quantity_Member_Requied,
+                    PersonalCreated = user_Services.GetUser(data.UserID)?.UserName ?? "Unknown",
+                    ProjectDescription = data.ProjectDescription,
+                    ProjectInfo = data.ProjectInfo,
+                    StartAt = data.StartAt,
+                    Status = status_Services.GetStatus(data.StatusID)?.StatusName ?? "Unknown",
+                };
+
+                ProjectNameTextBox.Text = convert_data.ProjectName;
+                StartDatePicker.SelectedDate = convert_data.StartAt;
+                EndDatePicker.SelectedDate = convert_data.EndAt;
+                InfoTextBox.Text = convert_data.ProjectInfo;
+                DescriptionTextBox.Text = convert_data.ProjectDescription;
+                CreationDatePicker.SelectedDate = convert_data.CreateAt;
+                CreatorTextBox.Text = convert_data.PersonalCreated;
+
+                var statusList = status_Services.GetStatuses().Select(s => s.StatusName).ToList();
+                StatusComboBox.ItemsSource = statusList;
+                StatusComboBox.SelectedItem = statusList.FirstOrDefault(status => status == convert_data.Status);
+
+                MemberCountTextBox.Text = convert_data.Quantity_Member_Requied.ToString();
             }
-            StatusComboBox.ItemsSource = array_data_status;
-            StatusComboBox.SelectedItem = array_data_status
-                 .FirstOrDefault(status => status == convert_data.Status);
-            MemberCountTextBox.Text = Convert.ToString(convert_data.Quantity_Member_Requied);
-            _projectId = convert_data.ProjectID;
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading project details: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Hide();
-            ProjectWindow projectWindow = new ProjectWindow();
-            projectWindow.Show();
+            Close();
         }
-
 
         private void EditProject_Click(object sender, RoutedEventArgs e)
         {
-            Hide();
-            EditProjectView projectView = new EditProjectView(_projectId);
-            projectView.Show();
+            ShowWindow(() => new EditProjectView(_projectId));
         }
 
         private void DeleteProject_Click(object sender, RoutedEventArgs e)
         {
-            var result = project_Services.DeleteProject(_projectId);
-            if (result)
+            try
             {
-                MessageBox.Show("Confirm", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                var result = project_Services.DeleteProject(_projectId);
+                if (result)
+                {
+                    MessageBox.Show("Project deleted successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ShowMainWindow();
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete project.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Project delete false", "Message", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Error deleting project: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void ManageProgress_Click(object sender, RoutedEventArgs e)
         {
-            Hide();
-            ManageTasksView projectView = new ManageTasksView(_projectId);
-            projectView.Show();
+            ShowWindow(() => new ManageTasksView(_projectId));
         }
 
         private void ManageMembers_Click(object sender, RoutedEventArgs e)
         {
-            Hide();
-            ProjectMembersView projectMembersView = new ProjectMembersView(_projectId);
-            projectMembersView.Show();
+            ShowWindow(() => new ProjectMembersView(_projectId));
+        }
+
+        // Generic method to show a window
+        private void ShowWindow<T>(Func<T> windowConstructor) where T : Window
+        {
+            try
+            {
+                var newWindow = windowConstructor();
+                newWindow.Owner = this;
+                newWindow.Closed += (s, args) => Show();
+                Hide();
+                newWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening window: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ShowMainWindow()
+        {
+            try
+            {
+                var mainWindow = new ProjectWindow();
+                mainWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening main window: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

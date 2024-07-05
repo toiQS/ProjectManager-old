@@ -1,65 +1,68 @@
 ﻿using Models;
 using Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace GUI
 {
-    /// <summary>
-    /// Interaction logic for ProjectMembersView.xaml
-    /// </summary>
     public partial class ProjectMembersView : Window
     {
         private readonly int _projectID;
         private readonly Member_In_Project_Services member_In_Project = new Member_In_Project_Services();
         private readonly User_Services user_Services = new User_Services();
         private readonly Role_Services role_Services = new Role_Services();
+
         public ProjectMembersView(int projectID)
         {
             InitializeComponent();
             _projectID = projectID;
-            var data = member_In_Project.GetMembersInProject(projectID)
-                .Select(x => new MemberResponse()
-                {
-                    MemberID = x.MemberID,
-                    
-                    UserName = user_Services.GetUser(x.UserID).UserName,
-                    RoleName = role_Services.GetRole(x.RoleID).RoleName,
-                });
-            
-            MembersDataGrid.ItemsSource = data;
+            LoadMembersData();
+        }
+
+        private void LoadMembersData()
+        {
+            try
+            {
+                var data = member_In_Project.GetMembersInProject(_projectID)
+                    .Select(x => new MemberResponse()
+                    {
+                        MemberID = x.MemberID,
+                        UserName = user_Services.GetUser(x.UserID)?.UserName ?? "Unknown",
+                        RoleName = role_Services.GetRole(x.RoleID)?.RoleName ?? "Unknown",
+                    }).ToList();
+
+                MembersDataGrid.ItemsSource = data;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading project members: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void AddMember_Click(object sender, RoutedEventArgs e)
         {
-            AddMemberView addMemberView = new AddMemberView(_projectID);
-            addMemberView.Show();
+            ShowWindow<AddMemberView>(() => new AddMemberView(_projectID));
         }
 
         private void RemoveMember_Click(object sender, RoutedEventArgs e)
         {
-            if(MembersDataGrid.SelectedItem is MemberResponse member_selected)
+            if (MembersDataGrid.SelectedItem is MemberResponse member_selected)
             {
                 var result = member_In_Project.DeleteMemberFromProject(member_selected.MemberID, _projectID);
                 if (result)
                 {
-                    MessageBox.Show("Confirm", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Member deleted successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LoadMembersData();
                 }
                 else
                 {
-                    MessageBox.Show("Member delete false", "Message", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Failed to delete member.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Please select a member to delete.", "No Member Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -67,14 +70,40 @@ namespace GUI
         {
             if (MembersDataGrid.SelectedItem is MemberResponse member_selected)
             {
-                EditMemberRoleView editMemberRoleView = new EditMemberRoleView(_projectID, member_selected.MemberID);
-                editMemberRoleView.Show();
+                ShowWindow<EditMemberRoleView>(() => new EditMemberRoleView(_projectID, member_selected.MemberID));
             }
             else
             {
-                MessageBox.Show("");
+                MessageBox.Show("Please select a member to adjust role.", "No Member Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-                
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            
+        }
+
+        // Generic method to show a window
+        private void ShowWindow<T>(Func<T> windowConstructor) where T : Window
+        {
+            try
+            {
+                var newWindow = windowConstructor.Invoke();
+                newWindow.Owner = this;
+                newWindow.Closed += (s, args) => ShowMainWindow();
+                Hide();
+                newWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening window: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ShowMainWindow()
+        {
+            Show();
         }
     }
 }

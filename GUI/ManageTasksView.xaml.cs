@@ -69,5 +69,10 @@ namespace GUI
                 var result = task_In_Project_Services.DeleteTask(task_selected.TaskID);
             }
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

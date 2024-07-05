@@ -1,5 +1,6 @@
 ﻿using Models;
 using Services;
+using System;
 using System.Linq;
 using System.Windows;
 
@@ -7,48 +8,54 @@ namespace GUI
 {
     public partial class ProjectWindow : Window
     {
-        private readonly Project_Services _projectServices = new Project_Services();
-        private readonly User_Services _userServices = new User_Services();
-        private readonly Status_Services _statusServices = new Status_Services();
+        private readonly Project_Services _projectServices;
+        private readonly User_Services _userServices;
+        private readonly Status_Services _statusServices;
 
         public ProjectWindow()
         {
             InitializeComponent();
+
+            _projectServices = new Project_Services();
+            _userServices = new User_Services();
+            _statusServices = new Status_Services();
+
             LoadProjects();
         }
 
         private void LoadProjects()
         {
-            var data = _projectServices.GetProjects()
-                .Select(x => new ProjectResponse()
-                {
-                    ProjectID = x.ProjectID,
-                    EndAt = x.EndAt,
-                    PersonalCreated = _userServices.GetUser(x.UserID)?.UserName ?? "Unknown",
-                    ProjectName = x.ProjectName,
-                    StartAt = x.StartAt,
-                    Status = _statusServices.GetStatus(x.StatusID)?.StatusName ?? "Unknown"
-                }).ToList();
+            try
+            {
+                var projects = _projectServices.GetProjects()
+                    .Select(x => new ProjectResponse
+                    {
+                        ProjectID = x.ProjectID,
+                        EndAt = x.EndAt,
+                        PersonalCreated = _userServices.GetUser(x.UserID)?.UserName ?? "Unknown",
+                        ProjectName = x.ProjectName,
+                        StartAt = x.StartAt,
+                        Status = _statusServices.GetStatus(x.StatusID)?.StatusName ?? "Unknown"
+                    }).ToList();
 
-            ProjectListView.ItemsSource = data;
+                ProjectListView.ItemsSource = projects;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading projects: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void AddProject_Click(object sender, RoutedEventArgs e)
         {
-            NewProjectView newProjectView = new NewProjectView();
-            newProjectView.Closed += (s, args) => { Show(); LoadProjects(); };
-            Hide();
-            newProjectView.Show();
+            ShowWindow<NewProjectView>(() => new NewProjectView());
         }
 
         private void ViewEditProject_Click(object sender, RoutedEventArgs e)
         {
             if (ProjectListView.SelectedItem is ProjectResponse projectSelected)
             {
-                ProjectDetailView projectDetailView = new ProjectDetailView(projectSelected.ProjectID);
-                //projectDetailView.Closed += (s, args) => { Show(); LoadProjects(); };
-                Hide();
-                projectDetailView.Show();
+                ShowWindow<ProjectDetailView>(() => new ProjectDetailView(projectSelected.ProjectID));
             }
             else
             {
@@ -58,10 +65,28 @@ namespace GUI
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Closed += (s, args) => Show();
-            Hide();
-            mainWindow.Show();
+            ShowWindow<MainWindow>(() => new MainWindow());
+        }
+
+        private void ShowWindow<T>(Func<T> windowConstructor) where T : Window
+        {
+            try
+            {
+                var newWindow = windowConstructor.Invoke();
+                newWindow.Owner = this;
+                newWindow.Closed += (s, args) => ShowMainWindow();
+                Hide();
+                newWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening window: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ShowMainWindow()
+        {
+            Show();
         }
     }
 }
