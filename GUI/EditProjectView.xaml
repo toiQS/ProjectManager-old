@@ -6,14 +6,13 @@
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
         Title="Edit Project" Height="487" Width="600" WindowStartupLocation="CenterScreen">
-    <Grid Margin="20,20,20,0" Height="522" VerticalAlignment="Top">
+    <Grid Margin="20,20,20,0" Height="445" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
-            <RowDefinition Height="Auto" MinHeight="300.04"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -44,11 +43,11 @@
         <TextBox x:Name="txtProjectDescription" Grid.Row="4" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Margin="1,0,10,0" Grid.Column="1" Height="113" VerticalAlignment="Top"/>
 
         <!-- Thông tin dự án -->
-        <Label Grid.Row="5" Grid.Column="0" Content="Thông tin dự án:" VerticalAlignment="Top" Margin="0,0,10,0" Height="26"/>
-        <TextBox x:Name="txtProjectInfo" Grid.Row="5" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Margin="107,2,10,0" Height="128" VerticalAlignment="Top"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Thông tin dự án:" VerticalAlignment="Top" Margin="0,118,10,0" Height="26"/>
+        <TextBox x:Name="txtProjectInfo" Grid.Row="4" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Margin="107,131,10,0" Height="128" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
 
         <!-- Các nút chức năng -->
-        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,150,0,0" Width="368" Height="57" VerticalAlignment="Top">
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,284,0,0" Width="368" Height="57" VerticalAlignment="Top">
             <Button Content="Lưu" Margin="50,0,50,0" Click="Save_Click" Height="31" Width="100"/>
             <Button Content="Hủy"  Click="Cancel_Click" Height="31" Width="100"/>
         </StackPanel>
