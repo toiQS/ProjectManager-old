@@ -96,12 +96,14 @@ namespace GUI
 
         private void ManageProgress_Click(object sender, RoutedEventArgs e)
         {
+            Hide();
             ManageTasksView projectView = new ManageTasksView(_projectId);
             projectView.Show();
         }
 
         private void ManageMembers_Click(object sender, RoutedEventArgs e)
         {
+            Hide();
             ProjectMembersView projectMembersView = new ProjectMembersView(_projectId);
             projectMembersView.Show();
         }

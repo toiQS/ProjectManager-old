@@ -23,7 +23,7 @@
         <!-- Task Title -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
             <Label Content="Tiêu đề:" Width="100" VerticalAlignment="Center"/>
-            <TextBox x:Name="TitleTextBox" Width="400"/>
+            <TextBox x:Name="TitleTextBox" Width="400" Height="38"/>
         </StackPanel>
 
         <!-- Task Info -->
@@ -45,20 +45,17 @@
         </StackPanel>
 
         <!-- Project ID -->
-        <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Content="ID dự án:" Width="100" VerticalAlignment="Center"/>
-            <ComboBox x:Name="ProjectIDComboBox" Width="150"/>
-        </StackPanel>
+        
 
         <!-- Task Level -->
         <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="0,0,0,10">
             <Label Content="Cấp độ nhiệm vụ:" Width="100" VerticalAlignment="Center"/>
-            <ComboBox x:Name="LevelTaskIDComboBox" Width="150"/>
+            <ComboBox x:Name="LevelTaskNameComboBox" Width="150"/>
         </StackPanel>
 
         <!-- Buttons -->
         <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,42,0,-42">
-            <Button Content="Xóa" Width="100" Click="DeleteTask_Click" Margin="0,0,10,0"/>
+            <Button Content="Lưu" Width="100" Click="UpdateTask_Click" Margin="0,0,10,0"/>
             <Button Content="Hủy" Width="100" Click="Cancel_Click"/>
         </StackPanel>
     </Grid>

@@ -131,5 +131,18 @@ namespace Services
                 return false;
             }
         }
+        public int GetTaskIdByText(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new Exception("Can be null here");
+            }
+            var data = _context.Task_Level
+                .Where(x => x.TaskName.ToLower() == text.ToLower())
+                .FirstOrDefault();
+            if (data != null)
+                return data.TaskLevelID;
+            throw new Exception("Not Found");
+        }
     }
 }

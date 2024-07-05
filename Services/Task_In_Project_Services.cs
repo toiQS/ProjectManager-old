@@ -47,7 +47,7 @@ namespace Services
         }
 
         // Add a new task to a project
-        public bool AddTask(string name, string description, DateTime createAt, DateTime startAt, DateTime endAt, int taskLevelId, int projectId)
+        public bool AddTask(string name, string description, DateTime startAt, DateTime endAt, int taskLevelId, int projectId)
         {
             if (string.IsNullOrEmpty(name) || projectId == 0 || taskLevelId == 0)
             {
@@ -60,7 +60,7 @@ namespace Services
                 {
                     TaskName = name,
                     TaskDescription = description,
-                    CreateAt = createAt,
+                    CreateAt = DateTime.Now,
                     StartAt = startAt,
                     EndAt = endAt,
                     TaskLevelID = taskLevelId,

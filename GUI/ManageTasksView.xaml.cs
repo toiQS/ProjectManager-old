@@ -47,19 +47,27 @@ namespace GUI
 
         private void AddTask_Click(object sender, RoutedEventArgs e)
         {
-            AddEditTaskView addEditTaskView = new AddEditTaskView();
-            addEditTaskView.Show();
+
+            AddTaskView addTaskView = new AddTaskView(_projectID) ;
+            addTaskView.ShowDialog();
         }
 
         private void ViewTask_Click(object sender, RoutedEventArgs e)
         {
-            TaskDetailView taskDetailView = new TaskDetailView();
-            taskDetailView.Show();
+            if (TasksDataGrid.SelectedItem is Task_Project_Response task_selected)
+            {
+                TaskDetailView taskDetailView = new TaskDetailView(task_selected.TaskID);
+                taskDetailView.Show();
+            }
+            
         }
 
         private void DeleteTask_Click(object sender, RoutedEventArgs e)
         {
-
+            if (TasksDataGrid.SelectedItem is Task_Project_Response task_selected)
+            {
+                var result = task_In_Project_Services.DeleteTask(task_selected.TaskID);
+            }
         }
     }
 }

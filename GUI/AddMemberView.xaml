@@ -8,37 +8,31 @@
         Title="Thêm Thành Viên" Height="269" Width="450">
     <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="96"/>
+            <RowDefinition Height="34.96"/>
+            <RowDefinition Height="81.96"/>
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" Text="Thêm Thành Viên Mới" Margin="0,0,0,20"/>
+        <TextBlock Grid.Row="0" FontSize="16" FontWeight="Bold" Text="Thêm Thành Viên Mới" Margin="0,0,0,52"/>
 
         <!-- User ID -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+        <StackPanel Orientation="Horizontal" Margin="0,59,0,9">
             <Label Content="Mã Số Thành Viên" Width="150" VerticalAlignment="Center"/>
             <ComboBox x:Name="UserIDComboBox" Width="200"/>
         </StackPanel>
 
         <!-- Project ID -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Content="Tên Dự Án" Width="150" VerticalAlignment="Center"/>
-            <ComboBox x:Name="ProjectNameComboBox" Width="200"/>
-        </StackPanel>
+
 
         <!-- Role ID -->
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,10">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,4,0,8">
             <Label Content="Vai Trò Dự Án" Width="150" VerticalAlignment="Center"/>
             <ComboBox x:Name="RoleNameComboBox" Width="200"/>
         </StackPanel>
 
         <!-- Buttons -->
-        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="200,0,0,0" Width="210" Height="28" VerticalAlignment="Center">
             <Button Content="Thêm" Width="100" Click="Add_Click" Margin="0,0,10,0"/>
             <Button Content="Hủy" Width="100" Click="Cancel_Click"/>
         </StackPanel>

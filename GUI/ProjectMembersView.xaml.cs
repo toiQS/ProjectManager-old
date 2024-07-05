@@ -43,7 +43,7 @@ namespace GUI
 
         private void AddMember_Click(object sender, RoutedEventArgs e)
         {
-            AddMemberView addMemberView = new AddMemberView();
+            AddMemberView addMemberView = new AddMemberView(_projectID);
             addMemberView.Show();
         }
 
