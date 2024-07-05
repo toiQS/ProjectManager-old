@@ -46,7 +46,7 @@ namespace Services
         }
 
         // Add a new project
-        public bool AddProject(string name, string info, string description, DateTime createAt, DateTime startAt, DateTime endAt, int quantityMemberRequired, int statusId, int userId)
+        public bool AddProject(string name, string info, string description, DateTime startAt, DateTime endAt, int quantityMemberRequired, int statusId, int userId)
         {
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(info) || quantityMemberRequired <= 0)
             {
@@ -60,7 +60,7 @@ namespace Services
                     ProjectName = name,
                     ProjectInfo = info,
                     ProjectDescription = description,
-                    CreateAt = createAt,
+                    CreateAt = DateTime.Now,
                     StartAt = startAt,
                     EndAt = endAt,
                     Quantity_Member_Requied = quantityMemberRequired,
