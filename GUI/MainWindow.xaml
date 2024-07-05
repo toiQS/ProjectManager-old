@@ -27,12 +27,12 @@
                    Grid.Row="0" Grid.ColumnSpan="2"/>
 
         <!-- Side Navigation Panel -->
-        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="20" Width="180">
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="20,20,20,0" Width="180" Height="519">
             <Button Content="Project" Margin="0,10" Height="60" Width="160" Click="ProjectButton_Click"/>
             <Button Content="Role" Margin="0,10" Height="60" Width="160" Click="RoleButton_Click"/>
             <Button Content="Status" Margin="0,10" Height="60" Width="160" Click="StatusButton_Click"/>
-            <Button Content="Profile" Margin="0,10" Height="60" Width="160" Click="ProfileButton_Click"/>
             <Button Content="Task Level" Margin="0,10" Height="60" Width="160" Click="TaskLevelButton_Click"/>
+            <Button Content="Log Out" Click="LogoutButton_Click" Margin="0,10" Height="60" Width="160"/>
         </StackPanel>
 
         <!-- Placeholder for Main Content Area -->
@@ -41,6 +41,6 @@
                        HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" 
                        Foreground="Gray" Padding="20"/>
         </Border>
-        <Button Content="Log Out" Click="LogoutButton_Click" Margin="30,440,30,48" Grid.Row="1"/>
+
     </Grid>
 </Window>
