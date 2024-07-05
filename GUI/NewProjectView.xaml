@@ -51,7 +51,7 @@
             </TextBox>
             <StackPanel Height="116" Width="560">
                 <TextBlock Text="Thông tin dự án:" VerticalAlignment="Top"/>
-                <TextBox x:Name="txtProjectDescription1" TextWrapping="Wrap" AcceptsReturn="True" Height="100" VerticalScrollBarVisibility="Auto" RenderTransformOrigin="0.5,0.5">
+                <TextBox x:Name="txtProjectInfo" TextWrapping="Wrap" AcceptsReturn="True" Height="100" VerticalScrollBarVisibility="Auto" RenderTransformOrigin="0.5,0.5">
                     <TextBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -69,7 +69,7 @@
             <Button Content="Lưu" Width="100" Margin="0,20,10,10" Click="Save_Click"/>
             <Button Content="Hủy" Width="100" Margin="0,20,10,10" Click="Cancel_Click"/>
         </StackPanel>
-        <ComboBox HorizontalAlignment="Center" Height="24" Margin="0,12,0,0" Grid.Row="4" VerticalAlignment="Top" Width="284"/>
+        <ComboBox Name="StatusComboBox" HorizontalAlignment="Center" Height="24" Margin="0,12,0,0" Grid.Row="4" VerticalAlignment="Top" Width="284"/>
         <Label Content="Tình trạng dự án" HorizontalAlignment="Left" Margin="0,10,0,0" Grid.Row="4" VerticalAlignment="Top"/>
     </Grid>
 </Window>
