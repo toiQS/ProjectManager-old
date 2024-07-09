@@ -12,7 +12,7 @@ namespace Services
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Member_In_Project> Member_In_Projects { get; set; }
-        public DbSet<Member_In_Task> member_In_Tasks { get; set; }
+        public DbSet<Member_In_Task> Member_In_Tasks { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Status> Statuss { get; set; }

@@ -26,7 +26,5 @@ namespace Models
         [ForeignKey(nameof(Task_Level))]
         public int TaskLevelID { get; set; }
         public virtual Task_Level TaskLevel { get; set; }
-        
-        
     }
 }
