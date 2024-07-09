@@ -1,0 +1,21 @@
+﻿<Window x:Class="GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Login" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" FontSize="24"/>
+
+        <Label Content="Email" HorizontalAlignment="Left" Margin="152,100,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="EmailTextBox" HorizontalAlignment="Left" Margin="279,100,0,0" VerticalAlignment="Top" Width="250"/>
+
+        <Label Content="Password" HorizontalAlignment="Left" Margin="152,150,0,0" VerticalAlignment="Top"/>
+        <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="279,150,0,0" VerticalAlignment="Top" Width="250"/>
+
+        <Button Content="Đăng nhập" HorizontalAlignment="Left" Margin="182,220,0,0" VerticalAlignment="Top" Click="LoginButton_Click" Width="100"/>
+        <Button Content="Đăng ký" HorizontalAlignment="Left" Margin="429,220,0,0" VerticalAlignment="Top" Click="RegisterButton_Click" Width="100"/>
+    </Grid>
+</Window>
