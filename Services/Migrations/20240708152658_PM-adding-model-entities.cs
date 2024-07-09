@@ -3,12 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace Services.Migrations
 {
     /// <inheritdoc />
-    public partial class PMseedingdata : Migration
+    public partial class PMaddingmodelentities : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -101,12 +99,6 @@ namespace Services.Migrations
                         principalTable: "Statuss",
                         principalColumn: "StatusID",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Projects_Users_UserID",
-                        column: x => x.UserID,
-                        principalTable: "Users",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -127,12 +119,6 @@ namespace Services.Migrations
                 {
                     table.PrimaryKey("PK_Task_In_Projects", x => x.TaskID);
                     table.ForeignKey(
-                        name: "FK_Task_In_Projects_Projects_ProjectID",
-                        column: x => x.ProjectID,
-                        principalTable: "Projects",
-                        principalColumn: "ProjectID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Task_In_Projects_Task_Level_TaskLevelID",
                         column: x => x.TaskLevelID,
                         principalTable: "Task_Level",
@@ -148,8 +134,7 @@ namespace Services.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProjectID = table.Column<int>(type: "int", nullable: false),
                     RoleID = table.Column<int>(type: "int", nullable: false),
-                    UserID = table.Column<int>(type: "int", nullable: false),
-                    Task_In_ProjectTaskID = table.Column<int>(type: "int", nullable: true)
+                    UserID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -167,72 +152,38 @@ namespace Services.Migrations
                         principalColumn: "RoleID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Member_In_Projects_Task_In_Projects_Task_In_ProjectTaskID",
-                        column: x => x.Task_In_ProjectTaskID,
+                        name: "FK_Member_In_Projects_Users_UserID",
+                        column: x => x.UserID,
+                        principalTable: "Users",
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "member_In_Tasks",
+                columns: table => new
+                {
+                    Member_In_Task_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TaskID = table.Column<int>(type: "int", nullable: false),
+                    MemberID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_member_In_Tasks", x => x.Member_In_Task_ID);
+                    table.ForeignKey(
+                        name: "FK_member_In_Tasks_Member_In_Projects_MemberID",
+                        column: x => x.MemberID,
+                        principalTable: "Member_In_Projects",
+                        principalColumn: "MemberID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_member_In_Tasks_Task_In_Projects_TaskID",
+                        column: x => x.TaskID,
                         principalTable: "Task_In_Projects",
-                        principalColumn: "TaskID");
+                        principalColumn: "TaskID",
+                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.InsertData(
-                table: "Roles",
-                columns: new[] { "RoleID", "RoleInfo", "RoleName" },
-                values: new object[,]
-                {
-                    { 1, "Works on development tasks.", "Developer" },
-                    { 2, "Oversees the project.", "Manager" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Statuss",
-                columns: new[] { "StatusID", "StatusInfo", "StatusName" },
-                values: new object[,]
-                {
-                    { 1, "Project has not started yet.", "Not Started" },
-                    { 2, "Project is currently in progress.", "In Progress" },
-                    { 3, "Project is completed.", "Completed" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Task_Level",
-                columns: new[] { "TaskLevelID", "TaskInfo", "TaskName", "TaskParentID" },
-                values: new object[,]
-                {
-                    { 1, "Basic level tasks.", "Basic", null },
-                    { 2, "Intermediate level tasks.", "Intermediate", null }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "UserID", "Email", "Password", "UserName" },
-                values: new object[,]
-                {
-                    { 1, "admin@example.com", "password", "admin" },
-                    { 2, "jdoe@example.com", "password", "jdoe" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Projects",
-                columns: new[] { "ProjectID", "CreateAt", "EndAt", "ProjectDescription", "ProjectInfo", "ProjectName", "Quantity_Member_Requied", "StartAt", "StatusID", "UserID" },
-                values: new object[] { 1, new DateTime(2024, 4, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(337), new DateTime(2024, 8, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(359), "A complete overhaul of the corporate website.", "Redesigning the corporate website.", "Website Redesign", 5, new DateTime(2024, 5, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(357), 2, 1 });
-
-            migrationBuilder.InsertData(
-                table: "Task_Level",
-                columns: new[] { "TaskLevelID", "TaskInfo", "TaskName", "TaskParentID" },
-                values: new object[] { 3, "Advanced level tasks.", "Advanced", 2 });
-
-            migrationBuilder.InsertData(
-                table: "Member_In_Projects",
-                columns: new[] { "MemberID", "ProjectID", "RoleID", "Task_In_ProjectTaskID", "UserID" },
-                values: new object[,]
-                {
-                    { 1, 1, 1, null, 1 },
-                    { 2, 1, 2, null, 2 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Task_In_Projects",
-                columns: new[] { "TaskID", "CreateAt", "EndAt", "ProjectID", "StartAt", "TaskDescription", "TaskLevelID", "TaskName" },
-                values: new object[] { 1, new DateTime(2024, 5, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(402), new DateTime(2024, 8, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(404), 1, new DateTime(2024, 6, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(403), "Create design mockups for the new website.", 1, "Design Mockups" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Member_In_Projects_ProjectID",
@@ -245,24 +196,24 @@ namespace Services.Migrations
                 column: "RoleID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Member_In_Projects_Task_In_ProjectTaskID",
+                name: "IX_Member_In_Projects_UserID",
                 table: "Member_In_Projects",
-                column: "Task_In_ProjectTaskID");
+                column: "UserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_member_In_Tasks_MemberID",
+                table: "member_In_Tasks",
+                column: "MemberID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_member_In_Tasks_TaskID",
+                table: "member_In_Tasks",
+                column: "TaskID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Projects_StatusID",
                 table: "Projects",
                 column: "StatusID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Projects_UserID",
-                table: "Projects",
-                column: "UserID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Task_In_Projects_ProjectID",
-                table: "Task_In_Projects",
-                column: "ProjectID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Task_In_Projects_TaskLevelID",
@@ -279,10 +230,10 @@ namespace Services.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Member_In_Projects");
+                name: "member_In_Tasks");
 
             migrationBuilder.DropTable(
-                name: "Roles");
+                name: "Member_In_Projects");
 
             migrationBuilder.DropTable(
                 name: "Task_In_Projects");
@@ -291,13 +242,16 @@ namespace Services.Migrations
                 name: "Projects");
 
             migrationBuilder.DropTable(
+                name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "Users");
+
+            migrationBuilder.DropTable(
                 name: "Task_Level");
 
             migrationBuilder.DropTable(
                 name: "Statuss");
-
-            migrationBuilder.DropTable(
-                name: "Users");
         }
     }
 }

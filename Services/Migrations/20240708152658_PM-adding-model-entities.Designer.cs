@@ -12,8 +12,8 @@ using Services;
 namespace Services.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240702134838_PM-seeding-data")]
-    partial class PMseedingdata
+    [Migration("20240708152658_PM-adding-model-entities")]
+    partial class PMaddingmodelentities
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,9 +39,6 @@ namespace Services.Migrations
                     b.Property<int>("RoleID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Task_In_ProjectTaskID")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
@@ -51,25 +48,32 @@ namespace Services.Migrations
 
                     b.HasIndex("RoleID");
 
-                    b.HasIndex("Task_In_ProjectTaskID");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Member_In_Projects");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            MemberID = 1,
-                            ProjectID = 1,
-                            RoleID = 1,
-                            UserID = 1
-                        },
-                        new
-                        {
-                            MemberID = 2,
-                            ProjectID = 1,
-                            RoleID = 2,
-                            UserID = 2
-                        });
+            modelBuilder.Entity("Models.Member_In_Task", b =>
+                {
+                    b.Property<int>("Member_In_Task_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Member_In_Task_ID"));
+
+                    b.Property<int>("MemberID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TaskID")
+                        .HasColumnType("int");
+
+                    b.HasKey("Member_In_Task_ID");
+
+                    b.HasIndex("MemberID");
+
+                    b.HasIndex("TaskID");
+
+                    b.ToTable("member_In_Tasks");
                 });
 
             modelBuilder.Entity("Models.Project", b =>
@@ -114,24 +118,7 @@ namespace Services.Migrations
 
                     b.HasIndex("StatusID");
 
-                    b.HasIndex("UserID");
-
                     b.ToTable("Projects");
-
-                    b.HasData(
-                        new
-                        {
-                            ProjectID = 1,
-                            CreateAt = new DateTime(2024, 4, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(337),
-                            EndAt = new DateTime(2024, 8, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(359),
-                            ProjectDescription = "A complete overhaul of the corporate website.",
-                            ProjectInfo = "Redesigning the corporate website.",
-                            ProjectName = "Website Redesign",
-                            Quantity_Member_Requied = 5,
-                            StartAt = new DateTime(2024, 5, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(357),
-                            StatusID = 2,
-                            UserID = 1
-                        });
                 });
 
             modelBuilder.Entity("Models.Role", b =>
@@ -153,20 +140,6 @@ namespace Services.Migrations
                     b.HasKey("RoleID");
 
                     b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            RoleID = 1,
-                            RoleInfo = "Works on development tasks.",
-                            RoleName = "Developer"
-                        },
-                        new
-                        {
-                            RoleID = 2,
-                            RoleInfo = "Oversees the project.",
-                            RoleName = "Manager"
-                        });
                 });
 
             modelBuilder.Entity("Models.Status", b =>
@@ -188,26 +161,6 @@ namespace Services.Migrations
                     b.HasKey("StatusID");
 
                     b.ToTable("Statuss");
-
-                    b.HasData(
-                        new
-                        {
-                            StatusID = 1,
-                            StatusInfo = "Project has not started yet.",
-                            StatusName = "Not Started"
-                        },
-                        new
-                        {
-                            StatusID = 2,
-                            StatusInfo = "Project is currently in progress.",
-                            StatusName = "In Progress"
-                        },
-                        new
-                        {
-                            StatusID = 3,
-                            StatusInfo = "Project is completed.",
-                            StatusName = "Completed"
-                        });
                 });
 
             modelBuilder.Entity("Models.Task_In_Project", b =>
@@ -243,24 +196,9 @@ namespace Services.Migrations
 
                     b.HasKey("TaskID");
 
-                    b.HasIndex("ProjectID");
-
                     b.HasIndex("TaskLevelID");
 
                     b.ToTable("Task_In_Projects");
-
-                    b.HasData(
-                        new
-                        {
-                            TaskID = 1,
-                            CreateAt = new DateTime(2024, 5, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(402),
-                            EndAt = new DateTime(2024, 8, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(404),
-                            ProjectID = 1,
-                            StartAt = new DateTime(2024, 6, 2, 20, 48, 38, 104, DateTimeKind.Local).AddTicks(403),
-                            TaskDescription = "Create design mockups for the new website.",
-                            TaskLevelID = 1,
-                            TaskName = "Design Mockups"
-                        });
                 });
 
             modelBuilder.Entity("Models.Task_Level", b =>
@@ -287,27 +225,6 @@ namespace Services.Migrations
                     b.HasIndex("TaskParentID");
 
                     b.ToTable("Task_Level");
-
-                    b.HasData(
-                        new
-                        {
-                            TaskLevelID = 1,
-                            TaskInfo = "Basic level tasks.",
-                            TaskName = "Basic"
-                        },
-                        new
-                        {
-                            TaskLevelID = 2,
-                            TaskInfo = "Intermediate level tasks.",
-                            TaskName = "Intermediate"
-                        },
-                        new
-                        {
-                            TaskLevelID = 3,
-                            TaskInfo = "Advanced level tasks.",
-                            TaskName = "Advanced",
-                            TaskParentID = 2
-                        });
                 });
 
             modelBuilder.Entity("Models.User", b =>
@@ -333,22 +250,6 @@ namespace Services.Migrations
                     b.HasKey("UserID");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            UserID = 1,
-                            Email = "admin@example.com",
-                            Password = "password",
-                            UserName = "admin"
-                        },
-                        new
-                        {
-                            UserID = 2,
-                            Email = "jdoe@example.com",
-                            Password = "password",
-                            UserName = "jdoe"
-                        });
                 });
 
             modelBuilder.Entity("Models.Member_In_Project", b =>
@@ -365,13 +266,36 @@ namespace Services.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.Task_In_Project", null)
-                        .WithMany("Members")
-                        .HasForeignKey("Task_In_ProjectTaskID");
+                    b.HasOne("Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Project");
 
                     b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Models.Member_In_Task", b =>
+                {
+                    b.HasOne("Models.Member_In_Project", "Member_In_Project")
+                        .WithMany()
+                        .HasForeignKey("MemberID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.Task_In_Project", "Task_In_Project")
+                        .WithMany()
+                        .HasForeignKey("TaskID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member_In_Project");
+
+                    b.Navigation("Task_In_Project");
                 });
 
             modelBuilder.Entity("Models.Project", b =>
@@ -382,32 +306,16 @@ namespace Services.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Status");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Models.Task_In_Project", b =>
                 {
-                    b.HasOne("Models.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjectID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Models.Task_Level", "TaskLevel")
                         .WithMany()
                         .HasForeignKey("TaskLevelID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Project");
 
                     b.Navigation("TaskLevel");
                 });
@@ -429,11 +337,6 @@ namespace Services.Migrations
             modelBuilder.Entity("Models.Status", b =>
                 {
                     b.Navigation("Projects");
-                });
-
-            modelBuilder.Entity("Models.Task_In_Project", b =>
-                {
-                    b.Navigation("Members");
                 });
 
             modelBuilder.Entity("Models.Task_Level", b =>

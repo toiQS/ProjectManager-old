@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Services;
 
@@ -11,9 +12,11 @@ using Services;
 namespace Services.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240708153831_PM-seeding-data")]
+    partial class PMseedingdata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,7 +129,7 @@ namespace Services.Migrations
 
                     b.HasIndex("TaskID");
 
-                    b.ToTable("Member_In_Tasks");
+                    b.ToTable("member_In_Tasks");
 
                     b.HasData(
                         new
@@ -215,39 +218,39 @@ namespace Services.Migrations
                         new
                         {
                             ProjectID = 1,
-                            CreateAt = new DateTime(2024, 7, 9, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7192),
-                            EndAt = new DateTime(2024, 8, 9, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7213),
+                            CreateAt = new DateTime(2024, 7, 8, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1914),
+                            EndAt = new DateTime(2024, 8, 8, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1934),
                             ProjectDescription = "Description for Project Alpha",
                             ProjectInfo = "First project",
                             ProjectName = "Project Alpha",
                             Quantity_Member_Requied = 5,
-                            StartAt = new DateTime(2024, 7, 10, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7205),
+                            StartAt = new DateTime(2024, 7, 9, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1927),
                             StatusID = 1,
                             UserID = 1
                         },
                         new
                         {
                             ProjectID = 2,
-                            CreateAt = new DateTime(2024, 7, 9, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7221),
-                            EndAt = new DateTime(2024, 9, 9, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7222),
+                            CreateAt = new DateTime(2024, 7, 8, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1940),
+                            EndAt = new DateTime(2024, 9, 8, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1941),
                             ProjectDescription = "Description for Project Beta",
                             ProjectInfo = "Second project",
                             ProjectName = "Project Beta",
                             Quantity_Member_Requied = 4,
-                            StartAt = new DateTime(2024, 7, 11, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7221),
+                            StartAt = new DateTime(2024, 7, 10, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1941),
                             StatusID = 2,
                             UserID = 2
                         },
                         new
                         {
                             ProjectID = 3,
-                            CreateAt = new DateTime(2024, 7, 9, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7223),
-                            EndAt = new DateTime(2024, 10, 9, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7224),
+                            CreateAt = new DateTime(2024, 7, 8, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1944),
+                            EndAt = new DateTime(2024, 10, 8, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1945),
                             ProjectDescription = "Description for Project Gamma",
                             ProjectInfo = "Third project",
                             ProjectName = "Project Gamma",
                             Quantity_Member_Requied = 6,
-                            StartAt = new DateTime(2024, 7, 12, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7224),
+                            StartAt = new DateTime(2024, 7, 11, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1944),
                             StatusID = 3,
                             UserID = 3
                         });
@@ -394,10 +397,10 @@ namespace Services.Migrations
                         new
                         {
                             TaskID = 1,
-                            CreateAt = new DateTime(2024, 7, 9, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7260),
-                            EndAt = new DateTime(2024, 7, 16, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7262),
+                            CreateAt = new DateTime(2024, 7, 8, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1987),
+                            EndAt = new DateTime(2024, 7, 15, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1989),
                             ProjectID = 1,
-                            StartAt = new DateTime(2024, 7, 10, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7261),
+                            StartAt = new DateTime(2024, 7, 9, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1988),
                             TaskDescription = "Setup project environment",
                             TaskLevelID = 1,
                             TaskName = "Initial Setup"
@@ -405,10 +408,10 @@ namespace Services.Migrations
                         new
                         {
                             TaskID = 2,
-                            CreateAt = new DateTime(2024, 7, 9, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7263),
-                            EndAt = new DateTime(2024, 7, 23, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7265),
+                            CreateAt = new DateTime(2024, 7, 8, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1991),
+                            EndAt = new DateTime(2024, 7, 22, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1992),
                             ProjectID = 2,
-                            StartAt = new DateTime(2024, 7, 10, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7264),
+                            StartAt = new DateTime(2024, 7, 9, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1992),
                             TaskDescription = "Analyze requirements",
                             TaskLevelID = 2,
                             TaskName = "Requirement Analysis"
@@ -416,10 +419,10 @@ namespace Services.Migrations
                         new
                         {
                             TaskID = 3,
-                            CreateAt = new DateTime(2024, 7, 9, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7266),
-                            EndAt = new DateTime(2024, 7, 19, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7267),
+                            CreateAt = new DateTime(2024, 7, 8, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1994),
+                            EndAt = new DateTime(2024, 7, 18, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1995),
                             ProjectID = 1,
-                            StartAt = new DateTime(2024, 7, 11, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7266),
+                            StartAt = new DateTime(2024, 7, 10, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1994),
                             TaskDescription = "Design the user interface",
                             TaskLevelID = 3,
                             TaskName = "UI Design"
@@ -427,10 +430,10 @@ namespace Services.Migrations
                         new
                         {
                             TaskID = 4,
-                            CreateAt = new DateTime(2024, 7, 9, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7268),
-                            EndAt = new DateTime(2024, 7, 29, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7269),
+                            CreateAt = new DateTime(2024, 7, 8, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1996),
+                            EndAt = new DateTime(2024, 7, 28, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1997),
                             ProjectID = 2,
-                            StartAt = new DateTime(2024, 7, 12, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7269),
+                            StartAt = new DateTime(2024, 7, 11, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1997),
                             TaskDescription = "Develop the backend",
                             TaskLevelID = 1,
                             TaskName = "Backend Development"
@@ -438,10 +441,10 @@ namespace Services.Migrations
                         new
                         {
                             TaskID = 5,
-                            CreateAt = new DateTime(2024, 7, 9, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7270),
-                            EndAt = new DateTime(2024, 7, 24, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7271),
+                            CreateAt = new DateTime(2024, 7, 8, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1999),
+                            EndAt = new DateTime(2024, 7, 23, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(2000),
                             ProjectID = 3,
-                            StartAt = new DateTime(2024, 7, 13, 7, 33, 27, 270, DateTimeKind.Local).AddTicks(7271),
+                            StartAt = new DateTime(2024, 7, 12, 22, 38, 30, 805, DateTimeKind.Local).AddTicks(1999),
                             TaskDescription = "Test the application",
                             TaskLevelID = 2,
                             TaskName = "Testing"

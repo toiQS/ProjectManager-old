@@ -12,22 +12,17 @@ namespace Models
     {
         [Key]
         public int MemberID {  get; set; }
+
         [ForeignKey(nameof(Project))]
         public int ProjectID {  get; set; }
         public virtual Project Project { get; set; }
+
         [ForeignKey(nameof(Role))]
         public int RoleID {  get; set; }
         public virtual Role Role { get; set; }
-        
+
+        [ForeignKey(nameof(User))]
         public int UserID { get; set; }
-        
+        public virtual User User { get; set; }
     }
-    public class MemberResponse
-    {
-        public int MemberID { get; set; }
-       
-        public string UserName { get; set; } = string.Empty;
-        public string RoleName {  get; set; } = string.Empty;
-    }
-    
 }
