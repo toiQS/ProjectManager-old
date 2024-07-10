@@ -1,4 +1,5 @@
-﻿using Services._services;
+﻿using GUI.Member_Form;
+using Services._services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,7 +89,7 @@ namespace GUI.Project_Form
 
         private void ManageMembersButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowWindow<MemberWindow>(() => new MemberWindow(_projectId, _userId));
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
