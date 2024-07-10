@@ -58,7 +58,14 @@ namespace GUI.Member_Form
 
         private void ViewButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (MemberListView.SelectedItems is Member_In_Project member_selected)
+            {
+                ShowWindow<MemberDetailWindow>(() => new MemberDetailWindow(member_selected.MemberID, _projectId));
+            }
+            else
+            {
+                MessageBox.Show("Please choise a member","Warning",MessageBoxButton.OK,MessageBoxImage.Warning);
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
