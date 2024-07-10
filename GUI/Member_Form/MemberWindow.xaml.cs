@@ -53,7 +53,7 @@ namespace GUI.Member_Form
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-                
+            ShowWindow<AddMemberWindow>(() => new AddMemberWindow(_projectId));
         }
 
         private void ViewButton_Click(object sender, RoutedEventArgs e)
@@ -83,5 +83,26 @@ namespace GUI.Member_Form
                 MessageBox.Show("Can't get data","Error",MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void ShowWindow<T>(Func<T> windowConstructor) where T : Window
+        {
+            try
+            {
+                var newWindow = windowConstructor.Invoke();
+                newWindow.Owner = this;
+                newWindow.Closed += (s, args) => ShowMainWindow();
+                Hide();
+                newWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening window: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ShowMainWindow()
+        {
+            Show();
+        }
+
     }
 }
