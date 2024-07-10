@@ -29,13 +29,14 @@ namespace GUI.Project_Form
         {
             InitializeComponent();
             LoadData();
+            _userID = userId;
         }
 
         private void ViewButton_Click(object sender, RoutedEventArgs e)
         {
             if (ProjectListView.SelectedItem is ProjectResponse project_selected)
             {
-
+                ShowWindow<ProjectDetailView>(() => new ProjectDetailView(project_selected.ProjectID, _userID));
             }
             else
             {
@@ -45,7 +46,7 @@ namespace GUI.Project_Form
 
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            ShowWindow<AddProjectWindow>(() => new AddProjectWindow(_userID));
         }
 
         private void EditButton_Click(object sender, object e)
