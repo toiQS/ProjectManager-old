@@ -24,10 +24,10 @@
         <TextBlock x:Name="EndDateLabel" HorizontalAlignment="Left" Margin="500,150,0,0" VerticalAlignment="Top"/>
 
         <Label Content="Thông tin dự án:" HorizontalAlignment="Left" Margin="50,190,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBlock x:Name="ProjectInfoLabel" HorizontalAlignment="Left" Margin="150,190,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="600"/>
+        <TextBlock x:Name="ProjectInfoLabel" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap" Width="600" Height="55"/>
 
         <Label Content="Miêu tả dự án:" HorizontalAlignment="Left" Margin="50,250,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBlock x:Name="DescriptionLabel" HorizontalAlignment="Left" Margin="150,250,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="600"/>
+        <TextBlock x:Name="DescriptionLabel" HorizontalAlignment="Left" Margin="150,250,0,0" VerticalAlignment="Top" TextWrapping="Wrap" Width="600" Height="55"/>
 
         <Label Content="Tình trạng dự án:" HorizontalAlignment="Left" Margin="50,310,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBlock x:Name="StatusLabel" HorizontalAlignment="Left" Margin="150,310,0,0" VerticalAlignment="Top"/>
