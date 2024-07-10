@@ -43,6 +43,15 @@ namespace GUI.Member_Form
             {
                 var role_id = roleServices.GetByName(role_name);
                 var result = memberInProjectServices.AddMemberToProject(_projectId, role_id, user_id);
+                if (result)
+                {
+                    MessageBox.Show("Comfirm", "Comfirm", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("False", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
 
         }
