@@ -93,6 +93,12 @@ namespace Services._services
                 Console.WriteLine($"Message: {ex.Message},\n InnerException: {ex.InnerException},\n Source {ex.Source}");
                 return false;
             }
+
+        }
+        public Member_In_Project GetMemberInProject(int userId, int projectId)
+        {
+            var data = _context.Member_In_Projects.FirstOrDefault(x => x.UserID == userId && x.ProjectID == projectId);
+            return data;
         }
     }
 }
