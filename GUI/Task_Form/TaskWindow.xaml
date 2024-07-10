@@ -22,9 +22,9 @@
 
         <!-- Action Buttons -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="55,350,0,0">
-            <Button x:Name="AddTaskButton" Content="Thêm nhiệm vụ" Height="34" Width="120" Margin="0,0,10,0"/>
-            <Button x:Name="ViewTaskButton" Content="Xem" Height="34" Width="97" Margin="0,0,10,0"/>
-            <Button x:Name="BackButton" Content="Trở lại" Height="34" Width="97"/>
+            <Button x:Name="AddTaskButton" Content="Thêm nhiệm vụ" Height="34" Width="120" Margin="0,0,10,0" Click="AddTaskButton_Click"/>
+            <Button x:Name="ViewTaskButton" Content="Xem" Height="34" Width="97" Margin="0,0,10,0" Click="ViewTaskButton_Click"/>
+            <Button x:Name="BackButton" Content="Trở lại" Height="34" Width="97" Click="BackButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>
