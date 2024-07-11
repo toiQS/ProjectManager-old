@@ -25,6 +25,12 @@ namespace GUI.Project_Form
         private readonly ProjectServices projectServices = new ProjectServices();
         private readonly StatusServices statusServices = new StatusServices();
         private readonly UserServices userServices = new UserServices();
+
+        /// <summary>
+        /// Initializes a new instance of the ProjectWindow class.
+        /// Loads project data and sets the user ID.
+        /// </summary>
+        /// <param name="userId">The user ID of the logged-in user.</param>
         public ProjectWindow(int userId)
         {
             InitializeComponent();
@@ -32,6 +38,10 @@ namespace GUI.Project_Form
             _userID = userId;
         }
 
+        /// <summary>
+        /// Handles the Click event of the ViewButton.
+        /// Opens the ProjectDetailView window for the selected project.
+        /// </summary>
         private void ViewButton_Click(object sender, RoutedEventArgs e)
         {
             if (ProjectListView.SelectedItem is ProjectResponse project_selected)
@@ -40,31 +50,48 @@ namespace GUI.Project_Form
             }
             else
             {
-                MessageBox.Show("Please choise a item","Warning",MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please choose an item", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the CreateButton.
+        /// Opens the AddProjectWindow window to create a new project.
+        /// </summary>
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
             ShowWindow<AddProjectWindow>(() => new AddProjectWindow(_userID));
         }
 
+        /// <summary>
+        /// Handles the Click event of the EditButton.
+        /// Opens the ProjectDetailView window for editing the selected project.
+        /// </summary>
         private void EditButton_Click(object sender, object e)
         {
             if (ProjectListView.SelectedItem is ProjectResponse project_selected)
             {
-                ShowWindow<ProjectDetailView>(() => new ProjectDetailView(project_selected.ProjectID,_userID));
+                ShowWindow<ProjectDetailView>(() => new ProjectDetailView(project_selected.ProjectID, _userID));
             }
             else
             {
-                MessageBox.Show("Please choise a project","Warning",MessageBoxButton.OK,MessageBoxImage.Warning);
+                MessageBox.Show("Please choose a project", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the ExitButton.
+        /// Closes the current window.
+        /// </summary>
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+
+        /// <summary>
+        /// Loads the project data and populates the ProjectListView.
+        /// Displays a warning message if data cannot be loaded.
+        /// </summary>
         private void LoadData()
         {
             var data = projectServices.GetProjects()
@@ -78,12 +105,20 @@ namespace GUI.Project_Form
                     StartAt = x.StartAt,
                     Status = statusServices.GetStatus(x.UserID).StatusName,
                 });
-            if(data == null)
+
+            if (data == null)
             {
                 MessageBox.Show("Can't get data", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            ProjectListView.ItemsSource = data; 
+            ProjectListView.ItemsSource = data;
         }
+
+        /// <summary>
+        /// Opens a new window of type T and hides the current window.
+        /// Shows the main window again when the new window is closed.
+        /// </summary>
+        /// <typeparam name="T">The type of the window to be opened.</typeparam>
+        /// <param name="windowConstructor">The constructor function for the new window.</param>
         private void ShowWindow<T>(Func<T> windowConstructor) where T : Window
         {
             try
@@ -100,6 +135,9 @@ namespace GUI.Project_Form
             }
         }
 
+        /// <summary>
+        /// Shows the main window.
+        /// </summary>
         private void ShowMainWindow()
         {
             Show();
