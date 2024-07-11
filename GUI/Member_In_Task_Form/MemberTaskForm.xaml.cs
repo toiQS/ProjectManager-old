@@ -60,7 +60,7 @@ namespace GUI.Member_In_Task_Form
         /// </summary>
         private void AddMemberButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowWindow<AddMemberView>(() => new AddMemberView(_taskId, _userId));
         }
 
         /// <summary>
@@ -70,6 +70,20 @@ namespace GUI.Member_In_Task_Form
         private void DeleteMemberButton_Click(object sender, RoutedEventArgs e)
         {
             // Add logic for deleting a member from the task.
+            if (MemberListView.SelectedItems is Member_In_Task_Response member_selected)
+            {
+                var result = memberInTaskServices.RemoveMemberFromTask(member_selected.Member_In_Task_ID);
+                // Show appropriate message based on the result
+                if (result)
+                {
+                    MessageBox.Show("Confirm", "Confirm", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Error removing member", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
         }
 
         /// <summary>
