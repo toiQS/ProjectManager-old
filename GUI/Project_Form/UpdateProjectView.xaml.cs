@@ -23,6 +23,12 @@ namespace GUI.Project_Form
         private readonly int _projectId;
         private readonly ProjectServices projectServices = new ProjectServices();
         private readonly StatusServices statusServices = new StatusServices();
+
+        /// <summary>
+        /// Initializes a new instance of the UpdateProjectView class.
+        /// Loads project data and status options.
+        /// </summary>
+        /// <param name="projectID">The ID of the project to be updated.</param>
         public UpdateProjectView(int projectID)
         {
             InitializeComponent();
@@ -31,11 +37,19 @@ namespace GUI.Project_Form
             LoadStatus();
         }
 
+        /// <summary>
+        /// Handles the Click event of the BackButton.
+        /// Closes the current window.
+        /// </summary>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the UpdateButton.
+        /// Updates the project with the provided details.
+        /// </summary>
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             var project_name = ProjectNameTextBox.Text;
@@ -45,6 +59,7 @@ namespace GUI.Project_Form
             var start_at = StartDatePicker.SelectedDate.Value;
             var end_at = EndDatePicker.SelectedDate.Value;
             var status_name = StatusComboBox.SelectedValue.ToString();
+
             if (status_name == "Node")
             {
                 MessageBox.Show("Please select a status again", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -62,19 +77,26 @@ namespace GUI.Project_Form
                     {
                         MessageBox.Show("Can't get status id", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    var result = projectServices.UpdateProject(_projectId, project_name, project_info, project_description, start_at, end_at, max_member, status_id);
-                    if (result)
-                    {
-                        MessageBox.Show("Comfirm", "Comfirm", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        Close();
-                    }
                     else
                     {
-                        MessageBox.Show("False", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        var result = projectServices.UpdateProject(_projectId, project_name, project_info, project_description, start_at, end_at, max_member, status_id);
+                        if (result)
+                        {
+                            MessageBox.Show("Confirm", "Confirm", MessageBoxButton.OK, MessageBoxImage.Information);
+                            Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Update failed", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
                     }
                 }
             }
         }
+
+        /// <summary>
+        /// Loads the project data into the form fields.
+        /// </summary>
         private void LoadData()
         {
             var data = projectServices.GetProject(_projectId);
@@ -85,17 +107,20 @@ namespace GUI.Project_Form
             DescriptionTextBox.Text = data.ProjectDescription;
             StatusComboBox.SelectedValue = statusServices.GetStatus(data.StatusID).StatusName;
         }
+
+        /// <summary>
+        /// Loads the status options into the StatusComboBox.
+        /// </summary>
         private void LoadStatus()
         {
             var data = statusServices.GetStatuss();
-            var data_array_name = new List<string>()
-            {
-                "Node"
-            };
+            var data_array_name = new List<string> { "Node" };
+
             foreach (var item in data)
             {
                 data_array_name.Add(item.StatusName);
             }
+
             StatusComboBox.ItemsSource = data_array_name;
         }
     }
