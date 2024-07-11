@@ -106,6 +106,7 @@ namespace GUI.Project_Form
             ProjectInfoTextBox.Text = data.ProjectInfo;
             DescriptionTextBox.Text = data.ProjectDescription;
             StatusComboBox.SelectedValue = statusServices.GetStatus(data.StatusID).StatusName;
+            MaxMembersTextBox.Text = data.Quantity_Member_Requied.ToString();
         }
 
         /// <summary>
