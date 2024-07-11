@@ -1,4 +1,5 @@
 ﻿using GUI.Member_Form;
+using GUI.Task_Form;
 using Services._services;
 using System;
 using System.Collections.Generic;
@@ -113,7 +114,7 @@ namespace GUI.Project_Form
         /// </summary>
         private void ManageTasksButton_Click(object sender, RoutedEventArgs e)
         {
-            // Task management logic goes here.
+            ShowWindow<TaskWindow>(() => new TaskWindow(_projectId,_userId));
         }
 
         /// <summary>
