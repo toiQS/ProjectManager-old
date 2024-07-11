@@ -28,7 +28,12 @@ namespace GUI.Member_Form
         private readonly RoleServices roleServices = new RoleServices();
         private readonly MemberInProjectServices memberInProjectServices = new MemberInProjectServices();
         private readonly ProjectServices projectServices = new ProjectServices();
-        
+
+        /// <summary>
+        /// Initializes a new instance of the MemberWindow class.
+        /// </summary>
+        /// <param name="projectId">The ID of the project.</param>
+        /// <param name="userId">The ID of the user.</param>
         public MemberWindow(int projectId, int userId)
         {
             InitializeComponent();
@@ -36,10 +41,12 @@ namespace GUI.Member_Form
             _projectId = projectId;
             LoadData();
             var isMember = memberInProjectServices.GetMemberInProject(_userId, _projectId) ?? null;
+
+            // Check if the user is a member and if the user is not the project creator or not a role ID of 1 (admin role).
             if (isMember != null)
             {
                 var person_create_id = projectServices.GetProject(_projectId).UserID;
-                if(isMember.RoleID != 1 || _userId != person_create_id)
+                if (isMember.RoleID != 1 || _userId != person_create_id)
                 {
                     AddButton.Visibility = Visibility.Hidden;
                     ViewButton.Visibility = Visibility.Hidden;
@@ -51,27 +58,43 @@ namespace GUI.Member_Form
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the AddButton.
+        /// Opens the AddMemberWindow.
+        /// </summary>
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             ShowWindow<AddMemberWindow>(() => new AddMemberWindow(_projectId));
         }
 
+        /// <summary>
+        /// Handles the Click event of the ViewButton.
+        /// Opens the MemberDetailWindow for the selected member.
+        /// </summary>
         private void ViewButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MemberListView.SelectedItems is Member_In_Project member_selected)
+            if (MemberListView.SelectedItem is Member_In_Project member_selected)
             {
                 ShowWindow<MemberDetailWindow>(() => new MemberDetailWindow(member_selected.MemberID, _projectId));
             }
             else
             {
-                MessageBox.Show("Please choise a member","Warning",MessageBoxButton.OK,MessageBoxImage.Warning);
+                MessageBox.Show("Please choose a member", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the BackButton.
+        /// Closes the current window.
+        /// </summary>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+
+        /// <summary>
+        /// Loads the members data into the MemberListView.
+        /// </summary>
         private void LoadData()
         {
             var data = memberInProjectServices.GetMembersByProjectId(_projectId)
@@ -81,15 +104,21 @@ namespace GUI.Member_Form
                     MemberName = userServices.GetUser(x.UserID).UserName,
                     MemberRole = roleServices.GetRole(x.RoleID).RoleName
                 });
-            if(data != null)
+            if (data != null)
             {
                 MemberListView.ItemsSource = data;
             }
             else
             {
-                MessageBox.Show("Can't get data","Error",MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Can't get data", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        /// <summary>
+        /// Opens a new window and hides the current one.
+        /// </summary>
+        /// <typeparam name="T">The type of the window to be opened.</typeparam>
+        /// <param name="windowConstructor">The constructor function for the new window.</param>
         private void ShowWindow<T>(Func<T> windowConstructor) where T : Window
         {
             try
@@ -106,10 +135,12 @@ namespace GUI.Member_Form
             }
         }
 
+        /// <summary>
+        /// Shows the main window.
+        /// </summary>
         private void ShowMainWindow()
         {
             Show();
         }
-
     }
 }
