@@ -26,6 +26,13 @@ namespace GUI.Project_Form
         private readonly ProjectServices projectServices = new ProjectServices();
         private readonly StatusServices statusServices = new StatusServices();
         private readonly UserServices userServices = new UserServices();
+
+        /// <summary>
+        /// Initializes a new instance of the ProjectDetailView class.
+        /// Loads project data and sets visibility of update button based on user role.
+        /// </summary>
+        /// <param name="projectId">The ID of the project.</param>
+        /// <param name="userId">The ID of the logged-in user.</param>
         public ProjectDetailView(int projectId, int userId)
         {
             InitializeComponent();
@@ -42,6 +49,13 @@ namespace GUI.Project_Form
                 UpdateButton.IsEnabled = true;
             }
         }
+
+        /// <summary>
+        /// Opens a new window of type T and hides the current window.
+        /// Shows the main window again when the new window is closed.
+        /// </summary>
+        /// <typeparam name="T">The type of the window to be opened.</typeparam>
+        /// <param name="windowConstructor">The constructor function for the new window.</param>
         private void ShowWindow<T>(Func<T> windowConstructor) where T : Window
         {
             try
@@ -58,11 +72,19 @@ namespace GUI.Project_Form
             }
         }
 
+        /// <summary>
+        /// Shows the main window.
+        /// </summary>
         private void ShowMainWindow()
         {
             Show();
         }
 
+        /// <summary>
+        /// Loads the project data and populates the labels with project information.
+        /// Returns the ID of the user who created the project.
+        /// </summary>
+        /// <returns>The ID of the user who created the project.</returns>
         private int LoadData()
         {
             var data = projectServices.GetProject(_projectId);
@@ -77,21 +99,36 @@ namespace GUI.Project_Form
             return data.UserID;
         }
 
+        /// <summary>
+        /// Handles the Click event of the BackButton.
+        /// Closes the current window.
+        /// </summary>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the ManageTasksButton.
+        /// </summary>
         private void ManageTasksButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            // Task management logic goes here.
         }
 
+        /// <summary>
+        /// Handles the Click event of the ManageMembersButton.
+        /// Opens the MemberWindow to manage project members.
+        /// </summary>
         private void ManageMembersButton_Click(object sender, RoutedEventArgs e)
         {
             ShowWindow<MemberWindow>(() => new MemberWindow(_projectId, _userId));
         }
 
+        /// <summary>
+        /// Handles the Click event of the UpdateButton.
+        /// Opens the UpdateProjectView window to update project details.
+        /// </summary>
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             ShowWindow<UpdateProjectView>(() => new UpdateProjectView(_projectId));
