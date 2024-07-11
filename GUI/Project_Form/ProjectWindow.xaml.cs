@@ -64,22 +64,6 @@ namespace GUI.Project_Form
         }
 
         /// <summary>
-        /// Handles the Click event of the EditButton.
-        /// Opens the ProjectDetailView window for editing the selected project.
-        /// </summary>
-        private void EditButton_Click(object sender, object e)
-        {
-            if (ProjectListView.SelectedItem is ProjectResponse project_selected)
-            {
-                ShowWindow<ProjectDetailView>(() => new ProjectDetailView(project_selected.ProjectID, _userID));
-            }
-            else
-            {
-                MessageBox.Show("Please choose a project", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-
-        /// <summary>
         /// Handles the Click event of the ExitButton.
         /// Closes the current window.
         /// </summary>
