@@ -97,7 +97,7 @@ namespace Services._services
                     data.TaskName = taskName;
                     data.TaskDescription = taskDescription;
                     data.ProjectID = projectID;
-                    data.CreateAt = createAt;
+                    data.CreateAt = DateTime.Now;
                     data.StartAt = startAt;
                     data.EndAt = endAt;
                     data.TaskLevelID = taskLevelID;
