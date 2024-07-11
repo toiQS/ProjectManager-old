@@ -142,5 +142,10 @@ namespace GUI.Project_Form
         {
             Show();
         }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
