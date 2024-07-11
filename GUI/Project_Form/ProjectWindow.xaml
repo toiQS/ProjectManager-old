@@ -9,7 +9,7 @@
     <Grid>
         <Button x:Name="ViewButton" Content="Xem" HorizontalAlignment="Left" Margin="23,394,0,0" VerticalAlignment="Top" Click="ViewButton_Click" Width="56"/>
         <Button x:Name="CreateButton" Content="Tạo mới" HorizontalAlignment="Left" Margin="95,394,0,0" VerticalAlignment="Top" Click="CreateButton_Click" Width="64"/>
-        <Button x:Name="EditButton" Content="Tùy chỉnh" HorizontalAlignment="Left" Margin="190,394,0,0" VerticalAlignment="Top" Click="EditButton_Click" Width="63"/>
+        <Button x:Name="EditButton" Content="Tùy chọn   " HorizontalAlignment="Left" Margin="190,394,0,0" VerticalAlignment="Top" Click="EditButton_Click" Width="63"/>
         <Button x:Name="ExitButton" Content="Thoát" HorizontalAlignment="Left" Margin="288,394,0,0" VerticalAlignment="Top" Click="ExitButton_Click" Width="53"/>
         <ListView x:Name="ProjectListView" HorizontalAlignment="Center" Height="307" Margin="0,10,0,0" VerticalAlignment="Top" Width="780">
             <ListView.View>
