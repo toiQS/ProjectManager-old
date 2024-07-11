@@ -8,7 +8,7 @@
         Title="TaskWindow" Height="450" Width="800">
     <Grid>
         <!-- Task List -->
-        <ListView HorizontalAlignment="Center" Height="280" Margin="0,50,0,0" VerticalAlignment="Top" Width="752">
+        <ListView Name="TaskListView" HorizontalAlignment="Center" Height="280" Margin="0,50,0,0" VerticalAlignment="Top" Width="752">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Tên nhiệm vụ" DisplayMemberBinding="{Binding TaskName}" Width="160"/>
