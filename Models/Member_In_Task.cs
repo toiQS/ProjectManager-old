@@ -21,4 +21,10 @@ namespace Models
         public int MemberID { get; set; }
         public virtual Member_In_Project Member_In_Project { get; set;}
     }
+    public class Member_In_Task_Response
+    {
+        public int Member_In_Task_ID { get; set; }
+        public int MemberID { get; set; }
+        public string UserName { get; set; }
+    }
 }
