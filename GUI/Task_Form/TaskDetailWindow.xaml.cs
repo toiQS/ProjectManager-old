@@ -1,4 +1,5 @@
-﻿using Services._services;
+﻿using GUI.Member_In_Task_Form;
+using Services._services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -188,6 +189,11 @@ namespace GUI.Task_Form
         private void ShowMainWindow()
         {
             Show();
+        }
+
+        private void ManageMembersButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowWindow<MemberTaskForm>(() => new MemberTaskForm(_taskId,_projectId,_userId));
         }
     }
 }
