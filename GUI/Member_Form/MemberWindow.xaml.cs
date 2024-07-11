@@ -52,10 +52,7 @@ namespace GUI.Member_Form
                     ViewButton.Visibility = Visibility.Hidden;
                 }
             }
-            else
-            {
-                Close();
-            }
+            
         }
 
         /// <summary>
@@ -73,7 +70,7 @@ namespace GUI.Member_Form
         /// </summary>
         private void ViewButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MemberListView.SelectedItem is Member_In_Project member_selected)
+            if (MemberListView.SelectedItem is Member_In_Project_Response member_selected)
             {
                 ShowWindow<MemberDetailWindow>(() => new MemberDetailWindow(member_selected.MemberID, _projectId));
             }
