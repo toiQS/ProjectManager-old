@@ -51,7 +51,14 @@ namespace GUI.Project_Form
 
         private void EditButton_Click(object sender, object e)
         {
-
+            if (ProjectListView.SelectedItem is ProjectResponse project_selected)
+            {
+                ShowWindow<ProjectDetailView>(() => new ProjectDetailView(project_selected.ProjectID,_userID));
+            }
+            else
+            {
+                MessageBox.Show("Please choise a project","Warning",MessageBoxButton.OK,MessageBoxImage.Warning);
+            }
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
