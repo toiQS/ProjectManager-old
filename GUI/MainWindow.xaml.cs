@@ -14,6 +14,8 @@ namespace GUI
         public MainWindow()
         {
             InitializeComponent();
+            EmailTextBox.Text = string.Empty;
+            PasswordBox.Password = string.Empty;
         }
 
         /// <summary>
