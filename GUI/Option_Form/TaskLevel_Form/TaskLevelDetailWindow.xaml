@@ -1,0 +1,29 @@
+﻿<Window x:Class="GUI.Option_Form.TaskLevel_Form.TaskLevelDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.Option_Form.TaskLevel_Form"
+        mc:Ignorable="d"
+        Title="TaskLevelDetailWindow" Height="450" Width="800">
+    <Grid>
+        <!-- Labels -->
+        <Label Content="Tên mức độ nhiệm vụ mới:" HorizontalAlignment="Left" Height="26" Margin="73,80,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Thông tin mức độ nhiệm vụ:" HorizontalAlignment="Left" Height="26" Margin="73,140,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Mức độ nhiệm vụ khởi nguồn:" HorizontalAlignment="Left" Height="26" Margin="73,236,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+
+        <!-- Textboxes -->
+        <TextBox x:Name="TaskLevelNameTextBox" HorizontalAlignment="Left" Height="25" Margin="300,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
+        <TextBox x:Name="TaskLevelInfoTextBox" HorizontalAlignment="Left" Height="80" Margin="300,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
+
+        <!-- ComboBox for selecting initial task level -->
+        <ComboBox x:Name="InitialTaskLevelComboBox" HorizontalAlignment="Left" Height="29" Margin="300,233,0,0" VerticalAlignment="Top" Width="368"/>
+
+        <!-- Buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="300,292,0,0">
+            <Button Content="Lưu" Height="48" Width="115" Margin="0,0,20,0" Click="SaveButton_Click"/>
+            <Button Content="Xóa" Height="48" Width="115" Margin="0,0,20,0" Click="DeleteButton_Click"/>
+            <Button Content="Quay lại" Height="48" Width="115" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
