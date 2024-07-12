@@ -18,6 +18,12 @@ namespace Services._services
         {
             var data = _context.Task_In_Projects.ToList();
             return data;
+        }public IEnumerable<Task_In_Project> GetTasksInProject(int projectId)
+        {
+            var data = _context.Task_In_Projects
+                .Where(x => x.ProjectID == projectId)
+                .ToList();
+            return data;
         }
 
         public Task_In_Project GetTask(int id)
@@ -36,14 +42,14 @@ namespace Services._services
             return 0;
         }
 
-        public bool AddTask(string taskName, string taskDescription, int projectID, DateTime createAt, DateTime startAt, DateTime endAt, int taskLevelID)
+        public bool AddTask(string taskName, string taskDescription, int projectID, DateTime startAt, DateTime endAt, int taskLevelID)
         {
             var task = new Task_In_Project()
             {
                 TaskName = taskName,
                 TaskDescription = taskDescription,
                 ProjectID = projectID,
-                CreateAt = createAt,
+                CreateAt = DateTime.Now,
                 StartAt = startAt,
                 EndAt = endAt,
                 TaskLevelID = taskLevelID
@@ -81,7 +87,7 @@ namespace Services._services
             }
         }
 
-        public bool UpdateTask(int taskID, string taskName, string taskDescription, int projectID, DateTime createAt, DateTime startAt, DateTime endAt, int taskLevelID)
+        public bool UpdateTask(int taskID, string taskName, string taskDescription, int projectID, DateTime startAt, DateTime endAt, int taskLevelID)
         {
             try
             {
@@ -91,7 +97,7 @@ namespace Services._services
                     data.TaskName = taskName;
                     data.TaskDescription = taskDescription;
                     data.ProjectID = projectID;
-                    data.CreateAt = createAt;
+                    data.CreateAt = DateTime.Now;
                     data.StartAt = startAt;
                     data.EndAt = endAt;
                     data.TaskLevelID = taskLevelID;

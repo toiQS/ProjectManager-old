@@ -9,12 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Models\Models.csproj" />
-    <ProjectReference Include="..\Services\Services.csproj" />
+    <Folder Include="Option_Form\User_Form\" />
+    <Folder Include="Option_Form\Statuss_Form\" />
+    <Folder Include="Option_Form\TaskLevel_Form\" />
+    <Folder Include="Option_Form\Role_Form\" />
   </ItemGroup>
 
 </Project>

@@ -72,16 +72,16 @@ namespace Services._services
             }
         }
 
-        public bool UpdateMemberInProject(int memberId, int projectId, int roleId, int userId)
+        public bool UpdateMemberInProject(int memberId, int roleId)
         {
             try
             {
                 var data = _context.Member_In_Projects.FirstOrDefault(x => x.MemberID == memberId);
                 if (data != null)
                 {
-                    data.ProjectID = projectId;
+                    
                     data.RoleID = roleId;
-                    data.UserID = userId;
+                    
                     _context.Member_In_Projects.Update(data);
                     _context.SaveChanges();
                     return true;
@@ -93,6 +93,12 @@ namespace Services._services
                 Console.WriteLine($"Message: {ex.Message},\n InnerException: {ex.InnerException},\n Source {ex.Source}");
                 return false;
             }
+
+        }
+        public Member_In_Project GetMemberInProject(int userId, int projectId)
+        {
+            var data = _context.Member_In_Projects.FirstOrDefault(x => x.UserID == userId && x.ProjectID == projectId);
+            return data;
         }
     }
 }
