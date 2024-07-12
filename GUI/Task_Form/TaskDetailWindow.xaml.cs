@@ -53,7 +53,9 @@ namespace GUI.Task_Form
                 {
                     // Hide edit and delete buttons if not authorized
                     DeleteButton.Visibility = Visibility.Hidden;
+                    DeleteButton.IsEnabled = false;
                     SaveButton.Visibility = Visibility.Hidden;
+                    SaveButton.IsEnabled = false;
                 }
             }
         }
