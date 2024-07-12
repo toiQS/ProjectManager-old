@@ -83,7 +83,7 @@ namespace Services._services
             }
         }
 
-        public bool UpdateProject(int projectID, string projectName, string projectInfo, string projectDescription, DateTime startAt, DateTime endAt, int quantityMemberRequired, int statusID)
+        public bool UpdateProject(int projectID, string projectName, string projectInfo, string projectDescription, DateTime startAt, DateTime endAt, int quantityMemberRequired, int statusID, int userID)
         {
             try
             {
@@ -97,6 +97,7 @@ namespace Services._services
                     data.EndAt = endAt;
                     data.Quantity_Member_Requied = quantityMemberRequired;
                     data.StatusID = statusID;
+                    data.UserID = userID;
                     _context.Projects.Update(data);
                     _context.SaveChanges();
                     return true;

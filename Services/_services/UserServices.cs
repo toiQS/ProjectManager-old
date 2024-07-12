@@ -99,18 +99,5 @@ namespace Services._services
                 return false;
             }
         }
-        public bool Login(string email, string password)
-        {
-            try
-            {
-                var data = _context.Users.Any(x => x.Email == email && x.Password == password);
-                return data;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Message: {ex.Message},\n InnerException: {ex.InnerException},\n Source {ex.Source}");
-                return false;
-            }
-        }
     }
 }

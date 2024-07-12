@@ -27,13 +27,4 @@ namespace Models
         public int TaskLevelID { get; set; }
         public virtual Task_Level TaskLevel { get; set; }
     }
-    public class TaskInProjectResponse
-    {
-        public int TaskID { get; set; }
-        public string TaskName { get; set; } = string.Empty;
-        public string TaskDescription { get; set; } = string.Empty;
-        public DateTime StartAt { get; set; }
-        public DateTime EndAt { get; set; }
-        public string TaskLevelName { get; set; } = string.Empty;
-    }
 }
