@@ -68,7 +68,7 @@ namespace GUI.Task_Form
         /// </summary>
         private void ViewTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            if (TaskListView.SelectedItems is TaskInProjectResponse task_selected)
+            if (TaskListView.SelectedItem is TaskInProjectResponse task_selected)
             {
                 ShowWindow<TaskDetailWindow>(() => new TaskDetailWindow(task_selected.TaskID, _userId, _projectId));
             }
