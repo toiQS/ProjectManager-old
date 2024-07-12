@@ -30,6 +30,7 @@ namespace Models
         public List<Member_In_Task> Tasks { get; set; } = new List<Member_In_Task> { };
 
     }
+
     public class ProjectResponse
     {
         public int ProjectID { get; set; }
