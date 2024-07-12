@@ -1,0 +1,25 @@
+﻿<Window x:Class="GUI.Option_Form.Statuss_Form.StatusDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.Option_Form.Statuss_Form"
+        mc:Ignorable="d"
+        Title="StatusDetailWindow" Height="362" Width="741">
+    <Grid>
+        <!-- Labels -->
+        <Label Content="Tên tình trạng:" HorizontalAlignment="Left" Margin="100,99,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Thông tin tình trạng:" HorizontalAlignment="Left" Margin="100,159,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+
+        <!-- Textboxes -->
+        <TextBox x:Name="StatusNameTextBox" HorizontalAlignment="Left" Height="26" Margin="234,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
+        <TextBox x:Name="StatusInfoTextBox" HorizontalAlignment="Left" Height="80" Margin="234,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400"/>
+
+        <!-- Buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="234,269,0,0">
+            <Button Content="Lưu" Height="48" Width="115" Margin="0,0,20,0" Click="SaveButton_Click"/>
+            <Button Content="Xóa" Height="48" Width="115" Margin="0,0,20,0" Click="DeleteButton_Click"/>
+            <Button Content="Hủy" Height="48" Width="115" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
