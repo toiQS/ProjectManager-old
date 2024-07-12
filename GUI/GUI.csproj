@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Services\Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Option_Form\User_Form\" />
+    <Folder Include="Option_Form\Statuss_Form\" />
+    <Folder Include="Option_Form\TaskLevel_Form\" />
+    <Folder Include="Option_Form\Role_Form\" />
+  </ItemGroup>
+
+</Project>
