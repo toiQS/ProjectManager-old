@@ -25,10 +25,4 @@ namespace Models
         public int UserID { get; set; }
         public virtual User User { get; set; }
     }
-    public class Member_In_Project_Response
-    {
-        public int MemberID { get; set; }
-        public string MemberName { get; set; } = string.Empty;
-        public string MemberRole { get; set; } = string.Empty;
-    }
 }
