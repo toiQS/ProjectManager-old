@@ -25,6 +25,11 @@ namespace Services._services
             var data = _context.Task_Level.FirstOrDefault(x => x.TaskLevelID == id);
             return data;
         }
+        public Task_Level GetTaskLevelParent(int? id)
+        {
+            var data = _context.Task_Level.FirstOrDefault(x => x.TaskLevelID == id);
+            return data;
+        }
 
         public int GetByName(string name)
         {
