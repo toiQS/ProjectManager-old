@@ -49,7 +49,7 @@ namespace GUI.Member_Form
                 if (isMember.RoleID != 1 || _userId != person_create_id)
                 {
                     AddButton.Visibility = Visibility.Hidden;
-                    ViewButton.Visibility = Visibility.Hidden;
+                    AddButton.IsEnabled = false;
                 }
             }
             
@@ -72,7 +72,7 @@ namespace GUI.Member_Form
         {
             if (MemberListView.SelectedItem is Member_In_Project_Response member_selected)
             {
-                ShowWindow<MemberDetailWindow>(() => new MemberDetailWindow(member_selected.MemberID, _projectId));
+                ShowWindow<MemberDetailWindow>(() => new MemberDetailWindow(member_selected.MemberID, _projectId,_userId));
             }
             else
             {
