@@ -32,13 +32,33 @@ namespace GUI.Member_Form
         /// </summary>
         /// <param name="memberId">The ID of the member to be managed.</param>
         /// <param name="projectId">The ID of the project the member is associated with.</param>
-        public MemberDetailWindow(int memberId, int projectId)
+        public MemberDetailWindow(int memberId, int projectId, int userId)
         {
             InitializeComponent();
             _projectId = projectId;
             _memberId = memberId;
             LoadData();
             LoadRole();
+            var isMember = memberInProjectServices.GetMemberInProject(userId, _projectId) ?? null;
+
+            // Check if the user is a member and if the user is not the project creator or not a role ID of 1 (admin role).
+            if (isMember != null)
+            {
+                var person_create_id = projectServices.GetProject(_projectId).UserID;
+                if (isMember.RoleID != 1 || userId != person_create_id)
+                {
+                    DeleteButton.Visibility = Visibility.Hidden;
+                    DeleteButton.IsEnabled = false;
+                    SaveButton.Visibility = Visibility.Hidden;
+                    SaveButton.IsEnabled = false;
+                }
+                //else
+                //{
+                //    DeleteButton.IsEnabled = true;
+                //    SaveButton.IsEnabled = true;
+                //}
+            }
+
         }
 
         /// <summary>
