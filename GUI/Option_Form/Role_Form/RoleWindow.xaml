@@ -7,6 +7,22 @@
         mc:Ignorable="d"
         Title="RoleWindow" Height="450" Width="800">
     <Grid>
-        
+        <!-- ListView for displaying roles -->
+        <ListView x:Name="RoleListView" HorizontalAlignment="Left" Height="300" Margin="36,27,0,0" VerticalAlignment="Top" Width="714">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Mã số vai trò" Width="150" DisplayMemberBinding="{Binding RoleID}"/>
+                    <GridViewColumn Header="Tên vai trò" Width="200" DisplayMemberBinding="{Binding RoleName}"/>
+                    <GridViewColumn Header="Thông tin vai trò" Width="350" DisplayMemberBinding="{Binding RoleInfo}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Action Buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="36,0,0,20">
+            <Button Content="Thêm vai trò" Height="32" Width="100" Margin="0,0,10,0" Click="AddButton_Click"/>
+            <Button Content="Xem vai trò" Height="32" Width="100" Margin="0,0,10,0" Click="ViewButton_Click"/>
+            <Button Content="Quay lại" Height="32" Width="100" Click="BackButton_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
