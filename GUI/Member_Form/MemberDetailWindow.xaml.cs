@@ -39,24 +39,27 @@ namespace GUI.Member_Form
             _memberId = memberId;
             LoadData();
             LoadRole();
-            var isMember = memberInProjectServices.GetMemberInProject(userId, _projectId) ?? null;
-
-            // Check if the user is a member and if the user is not the project creator or not a role ID of 1 (admin role).
-            if (isMember != null)
+            var user_root = projectServices.GetProject(_projectId).UserID;
+            var isMember = memberInProjectServices.GetUserInProject(userId, projectId);
+            int role_id;
+            if (isMember == null)
             {
-                var person_create_id = projectServices.GetProject(_projectId).UserID;
-                if (isMember.RoleID != 1 || userId != person_create_id)
-                {
-                    DeleteButton.Visibility = Visibility.Hidden;
-                    DeleteButton.IsEnabled = false;
-                    SaveButton.Visibility = Visibility.Hidden;
-                    SaveButton.IsEnabled = false;
-                }
-                //else
-                //{
-                //    DeleteButton.IsEnabled = true;
-                //    SaveButton.IsEnabled = true;
-                //}
+                role_id = 0;
+            }
+            else
+            {
+                role_id = isMember.RoleID;
+            }
+            if (role_id == 1 || userId == user_root)
+            {
+                SaveButton.Visibility = Visibility.Visible;
+                DeleteButton.Visibility = Visibility.Visible;
+
+            }
+            else
+            {
+                SaveButton.Visibility = Visibility.Hidden;
+                DeleteButton.Visibility = Visibility.Hidden;
             }
 
         }
