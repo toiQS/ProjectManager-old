@@ -1,10 +1,10 @@
 # Project Manager
 
-## Tổng Quan
+## Overview
 
-**Dự án:** Project Manager
+**Project:** Project Manager
 
-**Ngôn ngữ lập trình:** C#
+**Programming Language:** C#
 
 **Framework:** WPF (Windows Presentation Foundation)
 
@@ -12,63 +12,62 @@
 
 **ORM:** Entity Framework
 
-**Mục đích:** Dự án này được thiết kế để quản lý các dự án cá nhân và nhóm, bao gồm việc theo dõi tiến độ, quản lý tài nguyên và nhiệm vụ.
+**Purpose:** This project is designed to manage personal and team projects, including tracking progress, managing resources, and tasks.
 
-## Các Tính Năng Chính
+## Key Features
 
-1. **Quản Lý Dự Án:**
-   - Tạo, chỉnh sửa và xóa dự án.
-   - Theo dõi tiến độ và trạng thái của từng dự án.
+1. **Project Management:**
+   - Create, edit, and delete projects.
+   - Track progress and status of each project.
    
-2. **Quản Lý Nhiệm Vụ:**
-   - Thêm, chỉnh sửa và xóa nhiệm vụ.
-   - Gán nhiệm vụ cho thành viên dự án.
-   - Thiết lập ưu tiên và hạn chót cho nhiệm vụ.
+2. **Task Management:**
+   - Add, edit, and delete tasks.
+   - Assign tasks to project members.
+   - Set priority and deadlines for tasks.
 
-3. **Quản Lý Thành Viên:**
-   - Thêm, chỉnh sửa và xóa thành viên.
-   - Quản lý vai trò và quyền hạn của từng thành viên trong dự án.
+3. **Member Management:**
+   - Add, edit, and delete members.
+   - Manage roles and permissions of each project member.
 
-4. **Báo Cáo:**
-   - Tạo báo cáo tiến độ dự án.
-   - Xuất báo cáo dưới dạng file PDF hoặc Excel.
+4. **Reporting:**
+   - Generate project progress reports.
+   - Export reports as PDF or Excel files.
 
-## Cài Đặt và Chạy Dự Án
+## Installation and Running the Project
 
-1. **Yêu Cầu Hệ Thống:**
-   - .NET Framework 4.7.2 trở lên
-   - SQL Server 2017 trở lên
+1. **System Requirements:**
+   - .NET Framework 4.7.2 or higher
+   - SQL Server 2017 or higher
 
-2. **Cài Đặt:**
-   - Clone repository từ GitHub: `git clone https://github.com/toiQS/ProjectManager.git`
-   - Mở solution trong Visual Studio.
-   - Cấu hình chuỗi kết nối đến SQL Server trong file `\Services\ApplicationDbContext.cs`.
-   - Chạy lệnh `update-database` để tạo cơ sở dữ liệu và các bảng cần thiết.
-   - Build và chạy dự án.
+2. **Installation:**
+   - Clone the repository from GitHub: `git clone https://github.com/toiQS/ProjectManager.git`
+   - Open the solution in Visual Studio.
+   - Configure the connection string to SQL Server in the file `\Services\ApplicationDbContext.cs`.
+   - Run the command `update-database` to create the database and necessary tables.
+   - Build and run the project.
 
-3. **Cấu Hình:**
-   - Cập nhật chuỗi kết nối trong `\Services\ApplicationDbContext.cs`:
+3. **Configuration:**
+   - Update the connection string in `\Services\ApplicationDbContext.cs`:
      ```cs
      protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
      {
-        base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseSqlServer(
-        @"Server={your-sql-server-name};Database=PM;Trusted_Connection=True;MultipleActiveResultSets=true;trustServerCertificate=true;");
-
-      }
+         base.OnConfiguring(optionsBuilder);
+         optionsBuilder.UseSqlServer(
+         @"Server={your-sql-server-name};Database=PM;Trusted_Connection=True;MultipleActiveResultSets=true;trustServerCertificate=true;");
+     }
      ```
 
-4. **Chạy Dự Án:**
-   - Nhấn F5 trong Visual Studio để build và chạy dự án.
+4. **Running the Project:**
+   - Press F5 in Visual Studio to build and run the project.
 
-## Phát Triển và Đóng Góp
+## Development and Contributions
 
-- **Fork repository** trên GitHub.
-- **Tạo branch mới** cho các tính năng hoặc sửa lỗi.
-- **Gửi pull request** với mô tả chi tiết về thay đổi.
+- **Fork the repository** on GitHub.
+- **Create a new branch** for features or bug fixes.
+- **Submit a pull request** with a detailed description of the changes.
 
-## Liên Hệ
+## Contact
 
-- **Tác giả:** Nguyen Quoc Sieu
+- **Author:** Nguyen Quoc Sieu
 - **Email:** nguyensieu12112002@gmail.com
-- **Địa chỉ:** Long An, Viet Nam
+- **Address:** Long An, Viet Nam
