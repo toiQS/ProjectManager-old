@@ -39,17 +39,25 @@ namespace GUI.Task_Form
             _projectId = projectId;
             _userId = userId;
             LoadData();
-
-            // Check if the user is a member of the project and has appropriate permissions
-            var isMember = memberInProjectServices.GetMemberInProject(userId, _projectId);
-            if (isMember != null)
+            var user_root = projectServices.GetProject(_projectId).UserID;
+            var isMember = memberInProjectServices.GetUserInProject(userId,projectId);
+            int role_id;
+            if (isMember == null)
             {
-                var person_create_id = projectServices.GetProject(_projectId).UserID;
-                if (isMember.RoleID != 1 || userId != person_create_id)
-                {
-                    // Hide the AddTaskButton if the user is not authorized
-                    AddTaskButton.Visibility = Visibility.Hidden;
-                }
+                role_id = 0;
+            }
+            else
+            {
+                role_id = isMember.RoleID;
+            }
+            if (role_id == 1 || userId == user_root)
+            {
+                AddTaskButton.Visibility = Visibility.Visible;
+                
+            }
+            else
+            {
+                AddTaskButton.Visibility = Visibility.Hidden;
             }
         }
 
