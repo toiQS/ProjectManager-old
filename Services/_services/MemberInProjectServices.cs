@@ -95,7 +95,7 @@ namespace Services._services
             }
 
         }
-        public Member_In_Project GetMemberInProject(int userId, int projectId)
+        public Member_In_Project GetUserInProject(int userId, int projectId)
         {
             var data = _context.Member_In_Projects.FirstOrDefault(x => x.UserID == userId && x.ProjectID == projectId);
             return data;
