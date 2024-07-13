@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using GUI.Option_Form;
+using Models;
 using Services._services;
 using System;
 using System.Collections.Generic;
@@ -129,7 +130,7 @@ namespace GUI.Project_Form
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowWindow<OptionWindow>(() => new OptionWindow(_userID));
         }
     }
 }
