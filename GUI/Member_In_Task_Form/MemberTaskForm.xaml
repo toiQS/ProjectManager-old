@@ -11,8 +11,8 @@
         <ListView x:Name="MemberListView" HorizontalAlignment="Center" Height="327" Margin="0,31,0,0" VerticalAlignment="Top" Width="730">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Mã số thành viên" Width="200"/>
-                    <GridViewColumn Header="Tên thành viên" Width="600"/>
+                    <GridViewColumn Header="Mã số thành viên" Width="200" DisplayMemberBinding="{Binding MemberID}"/>
+                    <GridViewColumn Header="Tên thành viên" Width="600" DisplayMemberBinding="{Binding UserName}"/>
                 </GridView>
             </ListView.View>
         </ListView>
