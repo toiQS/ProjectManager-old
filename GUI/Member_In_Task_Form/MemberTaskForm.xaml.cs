@@ -40,17 +40,25 @@ namespace GUI.Member_In_Task_Form
             _taskId = taskId;
             _userId = userId;
             LoadData();
-            var isMember = memberInProjectServices.GetMemberInProject(userId, projectId) ?? null;
-
-            // Check if the user is a member and if the user is not the project creator or not a role ID of 1 (admin role).
-            if (isMember != null)
+            var user_root = projectServices.GetProject(projectId).UserID;
+            var isMember = memberInProjectServices.GetUserInProject(userId, projectId);
+            int role_id;
+            if (isMember == null)
             {
-                var person_create_id = projectServices.GetProject(projectId).UserID;
-                if (isMember.RoleID != 1 || userId != person_create_id)
-                {
-                    AddMemberButton.Visibility = Visibility.Hidden;
-                    DeleteMemberButton.Visibility = Visibility.Hidden;
-                }
+                role_id = 0;
+            }
+            else
+            {
+                role_id = isMember.RoleID;
+            }
+            if (role_id == 1 || userId == user_root)
+            {
+                AddMemberButton.Visibility = Visibility.Visible;
+
+            }
+            else
+            {
+                AddMemberButton.Visibility = Visibility.Hidden;
             }
         }
 
@@ -100,7 +108,7 @@ namespace GUI.Member_In_Task_Form
         /// </summary>
         private void LoadData()
         {
-            var data = memberInTaskServices.GetMembersInTasks()
+            var data = memberInTaskServices.GetMembersByTaskId(_taskId)
                 .Select(x => new Member_In_Task_Response()
                 {
                     Member_In_Task_ID = x.Member_In_Task_ID,
