@@ -44,19 +44,27 @@ namespace GUI.Task_Form
             LoadData();
             LoadTaskLevel();
 
-            // Check if the current user is authorized to edit or delete the task
-            var isMember = memberInProjectServices.GetMemberInProject(userId, _projectId);
-            if (isMember != null)
+            var user_root = projectServices.GetProject(_projectId).UserID;
+            var isMember = memberInProjectServices.GetUserInProject(userId, projectId);
+            int role_id;
+            if (isMember == null)
             {
-                var person_create_id = projectServices.GetProject(_projectId).UserID;
-                if (isMember.RoleID != 1 || userId != person_create_id)
-                {
-                    // Hide edit and delete buttons if not authorized
-                    DeleteButton.Visibility = Visibility.Hidden;
-                    DeleteButton.IsEnabled = false;
-                    SaveButton.Visibility = Visibility.Hidden;
-                    SaveButton.IsEnabled = false;
-                }
+                role_id = 0;
+            }
+            else
+            {
+                role_id = isMember.RoleID;
+            }
+            if (role_id == 1 || userId == user_root)
+            {
+                SaveButton.Visibility = Visibility.Visible;
+                DeleteButton.Visibility = Visibility.Visible;
+
+            }
+            else
+            {
+                SaveButton.Visibility = Visibility.Hidden;
+                DeleteButton.Visibility = Visibility.Hidden;
             }
         }
 
